@@ -12,20 +12,20 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     page_login.cpp \
-    students.cpp \
-    teacher.cpp
+    studentwindow.cpp \
+    teacherwindow.cpp
 
 HEADERS += \
     mainwindow.h \
     page_login.h \
-    students.h \
-    teacher.h
+    studentwindow.h \
+    teacherwindow.h
 
 FORMS += \
     mainwindow.ui \
     page_login.ui \
-    students.ui \
-    teacher.ui
+    studentwindow.ui \
+    teacherwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

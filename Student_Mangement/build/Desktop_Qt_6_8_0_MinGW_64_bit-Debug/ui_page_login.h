@@ -31,10 +31,10 @@ public:
     QPushButton *btn_exit;
     QWidget *widget_2;
     QGridLayout *gridLayout;
-    QLineEdit *lineEdit;
+    QLineEdit *le_username;
     QLineEdit *le_password;
     QLabel *label_3;
-    QLabel *le_username;
+    QLabel *account;
     QLabel *label_2;
 
     void setupUi(QWidget *Page_login)
@@ -77,13 +77,13 @@ public:
         widget_2->setGeometry(QRect(70, 90, 351, 79));
         gridLayout = new QGridLayout(widget_2);
         gridLayout->setObjectName("gridLayout");
-        lineEdit = new QLineEdit(widget_2);
-        lineEdit->setObjectName("lineEdit");
-        lineEdit->setMinimumSize(QSize(30, 20));
-        lineEdit->setToolTipDuration(1);
-        lineEdit->setMaxLength(20);
+        le_username = new QLineEdit(widget_2);
+        le_username->setObjectName("le_username");
+        le_username->setMinimumSize(QSize(30, 20));
+        le_username->setToolTipDuration(1);
+        le_username->setMaxLength(20);
 
-        gridLayout->addWidget(lineEdit, 0, 1, 1, 2);
+        gridLayout->addWidget(le_username, 0, 1, 1, 2);
 
         le_password = new QLineEdit(widget_2);
         le_password->setObjectName("le_password");
@@ -100,18 +100,19 @@ public:
 
         gridLayout->addWidget(label_3, 1, 0, 1, 2);
 
-        le_username = new QLabel(widget_2);
-        le_username->setObjectName("le_username");
+        account = new QLabel(widget_2);
+        account->setObjectName("account");
         QFont font2;
         font2.setFamilies({QString::fromUtf8("\345\276\256\350\275\257\351\233\205\351\273\221")});
         font2.setPointSize(12);
-        le_username->setFont(font2);
+        account->setFont(font2);
 
-        gridLayout->addWidget(le_username, 0, 0, 1, 1);
+        gridLayout->addWidget(account, 0, 0, 1, 1);
 
         label_2 = new QLabel(Page_login);
         label_2->setObjectName("label_2");
-        label_2->setGeometry(QRect(150, 70, 211, 20));
+        label_2->setGeometry(QRect(130, 70, 271, 20));
+        label_2->setFont(font1);
 
         retranslateUi(Page_login);
 
@@ -127,11 +128,11 @@ public:
         label->setText(QCoreApplication::translate("Page_login", "\351\200\211\344\277\256\350\257\276\346\210\220\347\273\251\347\256\241\347\220\206\347\263\273\347\273\237", nullptr));
         btn_login->setText(QCoreApplication::translate("Page_login", "\347\231\273\345\275\225", nullptr));
         btn_exit->setText(QCoreApplication::translate("Page_login", "\351\200\200\345\207\272", nullptr));
-        lineEdit->setPlaceholderText(QCoreApplication::translate("Page_login", "\350\257\267\350\276\223\345\205\245\345\267\245\345\217\267", nullptr));
+        le_username->setPlaceholderText(QCoreApplication::translate("Page_login", "\350\257\267\350\276\223\345\205\245\345\267\245\345\217\267", nullptr));
         le_password->setPlaceholderText(QCoreApplication::translate("Page_login", "\350\257\267\350\276\223\345\205\245\345\257\206\347\240\201", nullptr));
         label_3->setText(QCoreApplication::translate("Page_login", "\345\257\206\347\240\201:", nullptr));
-        le_username->setText(QCoreApplication::translate("Page_login", "\350\264\246\345\217\267", nullptr));
-        label_2->setText(QCoreApplication::translate("Page_login", "\350\257\267\350\200\201\345\270\210\350\276\223\345\205\245\345\267\245\345\217\267;\345\255\246\347\224\237\350\276\223\345\205\245\345\255\246\345\217\267", nullptr));
+        account->setText(QCoreApplication::translate("Page_login", "\350\264\246\345\217\267", nullptr));
+        label_2->setText(QCoreApplication::translate("Page_login", "\350\257\267\350\200\201\345\270\210\350\276\223\345\205\245\345\267\245\345\217\267,\345\255\246\347\224\237\350\276\223\345\205\245\345\255\246\345\217\267", nullptr));
     } // retranslateUi
 
 };
