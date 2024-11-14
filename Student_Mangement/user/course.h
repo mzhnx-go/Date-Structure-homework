@@ -16,7 +16,7 @@ public:
     QString getTeacher() const { return teacher; }
 
     // 提供 operator== 函数
-    bool operator==(const Course &other) const;
+    bool operator == (const Course &other) const;
 
 private:
     QString courseId;

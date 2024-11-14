@@ -6,6 +6,7 @@
 #include <QStandardPaths>
 #include <QDebug>
 #include <QMessageBox>
+#include <QString>
 FileHandler::FileHandler() {}
 
 
@@ -26,10 +27,21 @@ FileHandler::FileHandler() {}
         if (parts.size() < 6) {
         qWarning() << "'Error in loadStudent' 学生数据缺少基本信息";
         }
-
+        QString studentId = parts[0];
+        QString name = parts[1];
+        QString gender = parts[2];
+        QString grade = parts[3];
+        QString college = parts[4];
+        QString classInfo = parts[5];
+        QSet<QString> courses;
+        for (int i = 6; i < parts.size(); i ++) {
+            QString courseId = parts[i];
+            courses.insert(courseId);
+        }
+        Student student(studentId, name, gender, grade, college, classInfo, courses);
+        students.append(student);
     }
-
-
+    return true;
 }
 bool FileHandler::addStudent(const QString &fileName, const QVector<Student> &students) {
     //TODO::在文件中新加入学生数据

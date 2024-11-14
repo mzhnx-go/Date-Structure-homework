@@ -44,3 +44,6 @@ RESOURCES += \
     res/resource.qrc
 
 QT += core gui testlib
+
+SUBDIRS += \
+    Test/stu_test/stu_test.pro

@@ -15,16 +15,10 @@ public:
     double getFinalExamScore() const { return finalExamScore; }
     QList<double> getUnitTestList() const { return unitTestList; }
 
-    // 提供 operator== 函数
-    bool operator==(const Score &other) const;
-
 private:
     QString courseId;
     double finalExamScore;
     QList<double> unitTestList;
 };
-
-// 声明 qHash 函数
-uint qHash(const Score &score, uint seed = 0);
 
 #endif // SCORE_H
