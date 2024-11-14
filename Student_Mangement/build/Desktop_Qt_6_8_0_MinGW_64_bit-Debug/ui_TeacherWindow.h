@@ -12,13 +12,12 @@
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QStackedWidget>
-#include <QtWidgets/QTreeWidget>
+#include <QtWidgets/QTableWidget>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -26,20 +25,25 @@ QT_BEGIN_NAMESPACE
 class Ui_TeacherWindow
 {
 public:
-    QGridLayout *gridLayout_2;
     QWidget *widget;
-    QStackedWidget *stackedWidget;
-    QWidget *page;
-    QWidget *page_2;
     QWidget *widget_2;
     QWidget *widget_4;
-    QLabel *tital;
+    QHBoxLayout *horizontalLayout;
+    QLabel *title;
     QWidget *widget_5;
     QWidget *widget_3;
     QHBoxLayout *horizontalLayout_4;
     QLabel *username;
     QPushButton *exit;
-    QTreeWidget *treeWidget;
+    QTableWidget *tableWidget;
+    QWidget *widget_6;
+    QPushButton *modify;
+    QPushButton *display;
+    QPushButton *delete_2;
+    QLineEdit *inputText;
+    QPushButton *searchStu;
+    QPushButton *searchCor;
+    QLineEdit *lineEdit;
 
     void setupUi(QWidget *TeacherWindow)
     {
@@ -51,35 +55,28 @@ public:
         icon.addFile(QString::fromUtf8(":/bana.jpg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         TeacherWindow->setWindowIcon(icon);
         TeacherWindow->setStyleSheet(QString::fromUtf8("background-color: rgb(199, 255, 251);"));
-        gridLayout_2 = new QGridLayout(TeacherWindow);
-        gridLayout_2->setObjectName("gridLayout_2");
         widget = new QWidget(TeacherWindow);
         widget->setObjectName("widget");
-        stackedWidget = new QStackedWidget(widget);
-        stackedWidget->setObjectName("stackedWidget");
-        stackedWidget->setGeometry(QRect(197, 90, 981, 551));
-        stackedWidget->setStyleSheet(QString::fromUtf8("background-color: rgb(214, 255, 234);"));
-        page = new QWidget();
-        page->setObjectName("page");
-        stackedWidget->addWidget(page);
-        page_2 = new QWidget();
-        page_2->setObjectName("page_2");
-        stackedWidget->addWidget(page_2);
+        widget->setGeometry(QRect(11, 11, 1144, 644));
         widget_2 = new QWidget(widget);
         widget_2->setObjectName("widget_2");
-        widget_2->setGeometry(QRect(11, 11, 1196, 80));
+        widget_2->setGeometry(QRect(11, 11, 1122, 80));
         widget_2->setMinimumSize(QSize(1081, 80));
         widget_2->setStyleSheet(QString::fromUtf8("background-color: rgb(131, 191, 255);"));
         widget_4 = new QWidget(widget_2);
         widget_4->setObjectName("widget_4");
-        widget_4->setGeometry(QRect(350, 0, 311, 80));
-        tital = new QLabel(widget_4);
-        tital->setObjectName("tital");
-        tital->setGeometry(QRect(50, 10, 261, 51));
+        widget_4->setGeometry(QRect(350, 10, 381, 61));
+        horizontalLayout = new QHBoxLayout(widget_4);
+        horizontalLayout->setObjectName("horizontalLayout");
+        title = new QLabel(widget_4);
+        title->setObjectName("title");
         QFont font;
         font.setPointSize(16);
-        tital->setFont(font);
-        tital->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        title->setFont(font);
+        title->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        horizontalLayout->addWidget(title);
+
         widget_5 = new QWidget(widget_2);
         widget_5->setObjectName("widget_5");
         widget_5->setGeometry(QRect(910, 10, 181, 61));
@@ -105,17 +102,60 @@ public:
 
         horizontalLayout_4->addWidget(exit);
 
-        treeWidget = new QTreeWidget(widget);
-        treeWidget->headerItem()->setText(0, QString());
-        treeWidget->setObjectName("treeWidget");
-        treeWidget->setGeometry(QRect(11, 98, 181, 541));
-        treeWidget->setMinimumSize(QSize(181, 541));
-        treeWidget->setMaximumSize(QSize(181, 541));
-        treeWidget->setStyleSheet(QString::fromUtf8("background-color: rgb(176, 255, 214);\n"
-"border-top-color: rgb(170, 255, 0);"));
-
-        gridLayout_2->addWidget(widget, 0, 0, 1, 1);
-
+        tableWidget = new QTableWidget(widget);
+        tableWidget->setObjectName("tableWidget");
+        tableWidget->setGeometry(QRect(11, 152, 1051, 501));
+        widget_6 = new QWidget(widget);
+        widget_6->setObjectName("widget_6");
+        widget_6->setGeometry(QRect(0, 100, 1041, 47));
+        modify = new QPushButton(widget_6);
+        modify->setObjectName("modify");
+        modify->setGeometry(QRect(50, 11, 90, 25));
+        modify->setMinimumSize(QSize(50, 20));
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/res/\344\277\256\346\224\271.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        modify->setIcon(icon1);
+        display = new QPushButton(widget_6);
+        display->setObjectName("display");
+        display->setGeometry(QRect(160, 13, 90, 21));
+        display->setStyleSheet(QString::fromUtf8("padding-left: -0px\n"
+""));
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/res/\345\210\267\346\226\260.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        display->setIcon(icon2);
+        delete_2 = new QPushButton(widget_6);
+        delete_2->setObjectName("delete_2");
+        delete_2->setGeometry(QRect(270, 11, 70, 25));
+        delete_2->setMinimumSize(QSize(60, 25));
+        delete_2->setStyleSheet(QString::fromUtf8("padding-left: -20px;\n"
+"        icon-align: left;   \n"
+""));
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/res/\345\210\240\351\231\244.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        delete_2->setIcon(icon3);
+        delete_2->setIconSize(QSize(70, 20));
+        inputText = new QLineEdit(widget_6);
+        inputText->setObjectName("inputText");
+        inputText->setGeometry(QRect(360, 11, 200, 25));
+        searchStu = new QPushButton(widget_6);
+        searchStu->setObjectName("searchStu");
+        searchStu->setGeometry(QRect(580, 13, 70, 21));
+        searchStu->setMinimumSize(QSize(40, 20));
+        searchStu->setStyleSheet(QString::fromUtf8("padding-left: -10px"));
+        QIcon icon4;
+        icon4.addFile(QString::fromUtf8("res/\346\237\245\346\211\276.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        searchStu->setIcon(icon4);
+        searchStu->setIconSize(QSize(40, 30));
+        searchCor = new QPushButton(widget_6);
+        searchCor->setObjectName("searchCor");
+        searchCor->setGeometry(QRect(933, 13, 120, 21));
+        searchCor->setMaximumSize(QSize(16777, 16777215));
+        searchCor->setStyleSheet(QString::fromUtf8("padding-left: -10px"));
+        searchCor->setIcon(icon4);
+        searchCor->setIconSize(QSize(40, 30));
+        lineEdit = new QLineEdit(widget_6);
+        lineEdit->setObjectName("lineEdit");
+        lineEdit->setGeometry(QRect(680, 11, 230, 25));
 
         retranslateUi(TeacherWindow);
 
@@ -125,9 +165,16 @@ public:
     void retranslateUi(QWidget *TeacherWindow)
     {
         TeacherWindow->setWindowTitle(QCoreApplication::translate("TeacherWindow", "\350\200\201\345\270\210\346\237\245\350\257\242\347\252\227\345\217\243", nullptr));
-        tital->setText(QCoreApplication::translate("TeacherWindow", "\345\255\246\347\224\237\346\210\220\347\273\251\347\256\241\347\220\206\347\263\273\347\273\237", nullptr));
+        title->setText(QCoreApplication::translate("TeacherWindow", "\345\255\246\347\224\237\346\210\220\347\273\251\347\256\241\347\220\206\347\263\273\347\273\237(\346\225\231\345\270\210\347\225\214\351\235\242\357\274\211", nullptr));
         username->setText(QCoreApplication::translate("TeacherWindow", "admin", nullptr));
         exit->setText(QCoreApplication::translate("TeacherWindow", "\351\200\200\345\207\272", nullptr));
+        modify->setText(QCoreApplication::translate("TeacherWindow", "\344\277\256\346\224\271\346\210\220\347\273\251", nullptr));
+        display->setText(QCoreApplication::translate("TeacherWindow", "\346\230\276\347\244\272\346\210\220\347\273\251", nullptr));
+        delete_2->setText(QCoreApplication::translate("TeacherWindow", "\345\210\240\351\231\244", nullptr));
+        inputText->setPlaceholderText(QCoreApplication::translate("TeacherWindow", "\350\257\267\350\276\223\345\205\245\345\255\246\345\217\267\346\210\226\345\247\223\345\220\215", nullptr));
+        searchStu->setText(QCoreApplication::translate("TeacherWindow", "\346\237\245\346\211\276", nullptr));
+        searchCor->setText(QCoreApplication::translate("TeacherWindow", "\346\237\245\347\234\213\351\200\211\344\277\256\350\257\276\346\210\220\347\273\251", nullptr));
+        lineEdit->setPlaceholderText(QCoreApplication::translate("TeacherWindow", "\350\257\267\350\276\223\345\205\245\351\200\211\344\277\256\350\257\276\345\220\215\345\255\227", nullptr));
     } // retranslateUi
 
 };

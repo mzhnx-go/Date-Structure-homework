@@ -9,19 +9,25 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    filehandler.cpp \
     main.cpp \
     mainwindow.cpp \
     page_login.cpp \
-    student.cpp \
     studentwindow.cpp \
-    teacherwindow.cpp
+    teacherwindow.cpp \
+    user/course.cpp \
+    user/score.cpp \
+    user/student.cpp
 
 HEADERS += \
+    filehandler.h \
     mainwindow.h \
     page_login.h \
-    student.h \
     studentwindow.h \
-    teacherwindow.h
+    teacherwindow.h \
+    user/course.h \
+    user/score.h \
+    user/student.h
 
 FORMS += \
     mainwindow.ui \
@@ -35,4 +41,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    res.qrc
+    res/resource.qrc
+
+QT += core gui testlib

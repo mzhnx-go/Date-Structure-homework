@@ -20,7 +20,7 @@
    <string>成绩管理系统</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="res.qrc">
+   <iconset resource="res/resource.qrc">
     <normaloff>:/bana.jpg</normaloff>:/bana.jpg</iconset>
   </property>
   <property name="toolTip">
@@ -40,7 +40,8 @@
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources>
-  <include location="res.qrc"/>
+  <include location="res/resource.qrc"/>
+  <include location="res/resource.qrc"/>
  </resources>
  <connections/>
 </ui>

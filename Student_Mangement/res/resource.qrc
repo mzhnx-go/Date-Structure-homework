@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>bana.jpg</file>
+        <file>photo.jpg</file>
+        <file>resource.qrc</file>
+        <file>search.png</file>
+        <file>delete.png</file>
+        <file>refrash.png</file>
+        <file>modify.png</file>
+    </qresource>
+</RCC>

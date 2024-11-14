@@ -26,7 +26,7 @@
    <string>成绩管理系统</string>
   </property>
   <property name="windowIcon">
-   <iconset>
+   <iconset resource="res/resource.qrc">
     <normaloff>:/bana.jpg</normaloff>:/bana.jpg</iconset>
   </property>
   <property name="toolTip">
@@ -79,7 +79,7 @@ rgba(150,177,255,220), stop:1 rgba(238,204,218,220));
        </font>
       </property>
       <property name="text">
-       <string>请老师输入工号,学生输入学号</string>
+       <string/>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -142,7 +142,7 @@ rgba(150,177,255,220), stop:1 rgba(238,204,218,220));
           <number>20</number>
          </property>
          <property name="placeholderText">
-          <string>请输入工号</string>
+          <string>请输入学号/工号</string>
          </property>
         </widget>
        </item>
@@ -210,6 +210,9 @@ border-radius:15px;
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="res/resource.qrc"/>
+  <include location="res/resource.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -16,10 +16,10 @@ public:
     ~TeacherWindow();
 
 private slots:
-    void on_treeWidget_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous);
 
 private:
     Ui::TeacherWindow *ui;
+
 };
 
 #endif // TEACHERWINDOW_H

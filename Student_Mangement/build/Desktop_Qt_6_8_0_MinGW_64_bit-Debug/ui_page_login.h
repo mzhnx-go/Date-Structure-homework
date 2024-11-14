@@ -44,9 +44,9 @@ public:
     {
         if (Page_login->objectName().isEmpty())
             Page_login->setObjectName("Page_login");
-        Page_login->resize(492, 284);
-        Page_login->setMinimumSize(QSize(492, 284));
-        Page_login->setMaximumSize(QSize(492, 284));
+        Page_login->resize(400, 376);
+        Page_login->setMinimumSize(QSize(100, 100));
+        Page_login->setMaximumSize(QSize(2000, 2000));
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/bana.jpg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         Page_login->setWindowIcon(icon);
@@ -55,7 +55,7 @@ public:
 ""));
         widget_3 = new QWidget(Page_login);
         widget_3->setObjectName("widget_3");
-        widget_3->setGeometry(QRect(100, 30, 331, 221));
+        widget_3->setGeometry(QRect(30, 50, 341, 281));
         widget_3->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         verticalLayout = new QVBoxLayout(widget_3);
         verticalLayout->setObjectName("verticalLayout");
@@ -72,8 +72,9 @@ public:
         label_2 = new QLabel(widget_3);
         label_2->setObjectName("label_2");
         QFont font1;
-        font1.setPointSize(12);
+        font1.setPointSize(10);
         label_2->setFont(font1);
+        label_2->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         verticalLayout->addWidget(label_2);
 
@@ -90,16 +91,18 @@ public:
 
         label_3 = new QLabel(widget_2);
         label_3->setObjectName("label_3");
-        label_3->setFont(font1);
+        QFont font2;
+        font2.setPointSize(12);
+        label_3->setFont(font2);
 
         gridLayout->addWidget(label_3, 1, 0, 1, 2);
 
         account = new QLabel(widget_2);
         account->setObjectName("account");
-        QFont font2;
-        font2.setFamilies({QString::fromUtf8("\345\276\256\350\275\257\351\233\205\351\273\221")});
-        font2.setPointSize(12);
-        account->setFont(font2);
+        QFont font3;
+        font3.setFamilies({QString::fromUtf8("\345\276\256\350\275\257\351\233\205\351\273\221")});
+        font3.setPointSize(12);
+        account->setFont(font3);
 
         gridLayout->addWidget(account, 0, 0, 1, 1);
 
@@ -168,11 +171,11 @@ public:
         Page_login->setToolTip(QCoreApplication::translate("Page_login", "\347\231\273\345\275\225\347\252\227\345\217\243", nullptr));
 #endif // QT_CONFIG(tooltip)
         label->setText(QCoreApplication::translate("Page_login", "\351\200\211\344\277\256\350\257\276\346\210\220\347\273\251\347\256\241\347\220\206\347\263\273\347\273\237", nullptr));
-        label_2->setText(QCoreApplication::translate("Page_login", "\350\257\267\350\200\201\345\270\210\350\276\223\345\205\245\345\267\245\345\217\267,\345\255\246\347\224\237\350\276\223\345\205\245\345\255\246\345\217\267", nullptr));
+        label_2->setText(QString());
         le_password->setPlaceholderText(QCoreApplication::translate("Page_login", "\350\257\267\350\276\223\345\205\245\345\257\206\347\240\201", nullptr));
         label_3->setText(QCoreApplication::translate("Page_login", "\345\257\206\347\240\201:", nullptr));
         account->setText(QCoreApplication::translate("Page_login", "\350\264\246\345\217\267", nullptr));
-        le_username->setPlaceholderText(QCoreApplication::translate("Page_login", "\350\257\267\350\276\223\345\205\245\345\267\245\345\217\267", nullptr));
+        le_username->setPlaceholderText(QCoreApplication::translate("Page_login", "\350\257\267\350\276\223\345\205\245\345\255\246\345\217\267/\345\267\245\345\217\267", nullptr));
         btn_login->setText(QCoreApplication::translate("Page_login", "\347\231\273\345\275\225", nullptr));
         btn_exit->setText(QCoreApplication::translate("Page_login", "\351\200\200\345\207\272", nullptr));
     } // retranslateUi

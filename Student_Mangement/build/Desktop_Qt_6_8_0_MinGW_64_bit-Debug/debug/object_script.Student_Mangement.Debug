@@ -1,9 +1,13 @@
+debug/filehandler.o
 debug/main.o
 debug/mainwindow.o
 debug/page_login.o
 debug/studentwindow.o
 debug/teacherwindow.o
-debug/qrc_res.o
+debug/course.o
+debug/score.o
+debug/student.o
+debug/qrc_resource.o
 debug/moc_mainwindow.o
 debug/moc_page_login.o
 debug/moc_studentwindow.o

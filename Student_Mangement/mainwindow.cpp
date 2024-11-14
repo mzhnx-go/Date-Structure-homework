@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(&m_dlgLogin, &Page_login::sendLoginSuccess, this, &MainWindow::handleLoginSuccess); //连接信号和槽
     m_dlgLogin.show();
+
 }
 
 MainWindow::~MainWindow()
@@ -21,22 +22,24 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::handleLoginSuccess(Page_login::UserType userType) {
-    //处理登录成功的情况
-    if (teacherWindow) {
-        //如果老师窗口已存在，删除，然后创建新的
-        delete teacherWindow;
-    }
-    if (studentWindow) {
-        //同理
-        delete studentWindow;
-    }
+    // 处理登录成功的情况
     if (userType == Page_login::Teacher) {
-        teacherWindow = new TeacherWindow(); //不要加this，不然无法弹出界面
-        teacherWindow->show();
+        if (teacherWindow && !teacherWindow->isVisible()) {
+            teacherWindow->show();
+        } else {
+            teacherWindow = new TeacherWindow();
+            teacherWindow->show();
+        }
+        studentWindow = nullptr; // 关闭并释放学生窗口对象
     } else if (userType == Page_login::Student) {
-        studentWindow = new StudentWindow();
-        studentWindow->show();
-    }else {
-       QMessageBox::warning(this, "登录失败", "无效的账号或密码");
+        if (studentWindow && !studentWindow->isVisible()) {
+            studentWindow->show();
+        } else {
+            studentWindow = new StudentWindow();
+            studentWindow->show();
+        }
+        teacherWindow = nullptr; // 关闭并释放教师窗口对象
+    } else {
+        QMessageBox::warning(this, "登录失败", "无效的账号或密码");
     }
 }
