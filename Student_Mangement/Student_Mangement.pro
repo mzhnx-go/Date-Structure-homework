@@ -12,12 +12,14 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     page_login.cpp \
+    student.cpp \
     studentwindow.cpp \
     teacherwindow.cpp
 
 HEADERS += \
     mainwindow.h \
     page_login.h \
+    student.h \
     studentwindow.h \
     teacherwindow.h
 

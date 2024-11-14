@@ -15,6 +15,9 @@ public:
     explicit TeacherWindow(QWidget *parent = nullptr);
     ~TeacherWindow();
 
+private slots:
+    void on_treeWidget_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous);
+
 private:
     Ui::TeacherWindow *ui;
 };

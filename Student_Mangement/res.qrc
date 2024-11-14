@@ -2,5 +2,9 @@
     <qresource prefix="/">
         <file>photo.jpg</file>
         <file>bana.jpg</file>
+        <file>删除.png</file>
+        <file>刷新.png</file>
+        <file>res/修改.png</file>
+        <file>res/查找.png</file>
     </qresource>
 </RCC>
