@@ -1,4 +1,5 @@
 release/filehandler.o
+release/global.o
 release/main.o
 release/mainwindow.o
 release/page_login.o

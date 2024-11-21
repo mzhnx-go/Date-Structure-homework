@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     filehandler.cpp \
+    global.cpp \
     main.cpp \
     mainwindow.cpp \
     page_login.cpp \
@@ -21,6 +22,7 @@ SOURCES += \
 
 HEADERS += \
     filehandler.h \
+    global.h \
     mainwindow.h \
     page_login.h \
     studentwindow.h \

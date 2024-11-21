@@ -3,12 +3,11 @@
 
 #include <QString>
 #include <QSet>
-#include <user/course.h>
-#include <user/score.h>
+#include "course.h"
 class Student
 {
 private:
-    QString studentID;
+    QString studentId;
     QString name;
     QString gender;
     QString grade;
@@ -18,17 +17,15 @@ private:
 
 public:
     Student();
-    Student(const QString &studentID,
+    Student(const QString &studentId,
             const QString &name,
             const QString &gender,
             const QString &grade,
             const QString &college,
             const QString &classInfo,
-            const QSet<QString> &courses
-            )
-        : studentID(studentID), name(name), gender(gender), grade(grade), college(college), classInfo(classInfo), courses(courses) {}
+            const QSet<QString> &courses);
 
-    void setStudentID(const QString &id) { studentID = id; }
+    void setStudentID(const QString &id) { studentId = id; }
     void setName(const QString &name) { this->name = name; }
     void setGender(const QString &gender) { this->gender = gender; }
     void setGrade(const QString &grade) { this->grade = grade; }
@@ -36,13 +33,14 @@ public:
     void setClassInfo(const QString &classInfo) { this->classInfo = classInfo; }
     void addCourse(const QString &course) { courses.insert(course); }
 
-    QString getStudentID() const { return studentID; }
+    QString getId() const { return studentId; }
     QString getName() const { return name; }
     QString getGender() const { return gender; }
     QString getGrade() const { return grade; }
     QString getCollege() const { return college; }
     QString getClassInfo() const { return classInfo; }
     QSet<QString> getCourses() const { return courses; }
+     bool operator==(const Student &other) const;
 };
 
 #endif // STUDENT_H

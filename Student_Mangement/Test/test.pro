@@ -1,9 +1,20 @@
-QT += testlib
-QT -= gui
+QT += core gui testlib
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += qt console warn_on depend_includepath testcase
-CONFIG -= app_bundle
+SOURCES += tst_file_test.cpp \
+           ../global.cpp \
+           ../user/student.cpp \
+           ../filehandler.cpp \
 
-TEMPLATE = app
+# 添加头文件搜索路径
+INCLUDEPATH += $$PWD/../user \
+               $$PWD/../
 
-SOURCES +=  tst_file_test.cpp
+# 添加头文件
+HEADERS += \
+        ../global.h \
+        ../user/student.h \
+        ../filehandler.h \
+
+# 添加测试文件
+TESTS += tst_file_test.cpp

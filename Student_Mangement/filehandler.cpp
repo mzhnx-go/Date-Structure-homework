@@ -8,6 +8,7 @@
 #include <QMessageBox>
 #include <QString>
 FileHandler::FileHandler() {}
+FileHandler::~FileHandler() {}
 
 
  bool FileHandler::loadStudent(const QString &fileName, QVector<Student> &students) {
@@ -45,10 +46,11 @@ FileHandler::FileHandler() {}
 }
 bool FileHandler::addStudent(const QString &fileName, const QVector<Student> &students) {
     //TODO::在文件中新加入学生数据
-
+    return false;
 }
 bool FileHandler::deleteStudent(const QString &fileName, const QVector<Student> &students) {
     //TODO::删除文件中的学生数据
+    return false;
 }
 
 
@@ -62,6 +64,7 @@ bool FileHandler::deleteStudent(const QString &fileName, const QVector<Student> 
     }
     QTextStream in(&file);
     contents = in.readAll();
+    return true;
 }
 
 

@@ -1,14 +1,16 @@
+#ifndef FILEHANDLER_H
+#define FILEHANDLER_H
+
 #include <QString>
 #include <QVector>
 #include "user/student.h"
-#ifndef FILEHANDLER_H
-#define FILEHANDLER_H
 
 class FileHandler
 {
 public:
     FileHandler();
     ~FileHandler();
+
     bool loadStudent(const QString &fileName, QVector<Student> &students);
     bool addStudent(const QString &fileName, const QVector<Student> &students);
     bool deleteStudent(const QString &fileName, const QVector<Student> &students);
