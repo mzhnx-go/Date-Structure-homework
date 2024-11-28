@@ -18,7 +18,10 @@ SOURCES += \
     teacherwindow.cpp \
     user/course.cpp \
     user/score.cpp \
-    user/student.cpp
+    user/student.cpp \
+    user/tableattribute.cpp \
+    user/users.cpp \
+    utils.cpp
 
 HEADERS += \
     filehandler.h \
@@ -29,7 +32,10 @@ HEADERS += \
     teacherwindow.h \
     user/course.h \
     user/score.h \
-    user/student.h
+    user/student.h \
+    user/tableattribute.h \
+    user/users.h \
+    utils.h
 
 FORMS += \
     mainwindow.ui \

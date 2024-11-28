@@ -1,4 +1,4 @@
-#include "studentwindow.h"
+ #include "studentwindow.h"
 #include "ui_studentwindow.h"
 #include <QTreeWidget>
 StudentWindow::StudentWindow(QWidget *parent)

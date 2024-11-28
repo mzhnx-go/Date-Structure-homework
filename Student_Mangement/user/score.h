@@ -9,13 +9,14 @@ class Score
 {
 public:
     Score();
-    Score(const QString &id, double finalScore, const QList<double> &unitTests);
+    Score(const QString &id, const QString &courseId, double &finalScore, const QList<double> &unitTests);
 
-    QString getCourseId() const { return courseId; }
+    QString getStudentId() const { return studentId; }
     double getFinalExamScore() const { return finalExamScore; }
     QList<double> getUnitTestList() const { return unitTestList; }
-
+    QString getCourseId() const {return courseId;}
 private:
+    QString studentId;
     QString courseId;
     double finalExamScore;
     QList<double> unitTestList;

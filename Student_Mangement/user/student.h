@@ -4,7 +4,7 @@
 #include <QString>
 #include <QSet>
 #include "course.h"
-class Student
+class  Student
 {
 private:
     QString studentId;
@@ -32,7 +32,6 @@ public:
     void setCollege(const QString &college) { this->college = college; }
     void setClassInfo(const QString &classInfo) { this->classInfo = classInfo; }
     void addCourse(const QString &course) { courses.insert(course); }
-
     QString getId() const { return studentId; }
     QString getName() const { return name; }
     QString getGender() const { return gender; }
@@ -41,6 +40,8 @@ public:
     QString getClassInfo() const { return classInfo; }
     QSet<QString> getCourses() const { return courses; }
      bool operator==(const Student &other) const;
+
+
 };
 
 #endif // STUDENT_H

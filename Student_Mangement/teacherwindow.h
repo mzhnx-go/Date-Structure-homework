@@ -1,6 +1,6 @@
 #ifndef TEACHERWINDOW_H
 #define TEACHERWINDOW_H
-
+#include "filehandler.h"
 #include <QWidget>
 
 namespace Ui {
@@ -16,6 +16,8 @@ public:
     ~TeacherWindow();
 
 private slots:
+
+    void on_display_clicked();
 
 private:
     Ui::TeacherWindow *ui;

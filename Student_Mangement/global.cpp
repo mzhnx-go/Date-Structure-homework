@@ -2,7 +2,9 @@
 
 const QString stuRelativeFilePath = "file/students.txt";
 const QString coursesReFilePath = "file/courses.txt";
-const QString gradesReFilePath = "file/grades.txt";
+const QString scoresReFilePath = "file/scores.txt";
+const QString stuUserReFilePath = "file/stuusers.txt";
+const QString teacherUserReFilePath = "file/teacherusers.txt";
 QString projectRoot;
 void initProjectRoot() {
     // 获取根目录
@@ -12,4 +14,12 @@ void initProjectRoot() {
 
 QString getAbsolutePath(const QString &relativeFilePath) {
     return QDir(projectRoot).absoluteFilePath(relativeFilePath);
+}
+
+void initUsersPath() {
+    QString stuFilePath = getAbsolutePath(stuRelativeFilePath);
+    QString stuUserFilePath = getAbsolutePath(stuUserReFilePath);
+    QString scoresFilePath = getAbsolutePath(scoresReFilePath);
+    QString teacherUserFilePath = getAbsolutePath(teacherUserReFilePath);
+    QString coursesFilePath = getAbsolutePath(coursesReFilePath);
 }

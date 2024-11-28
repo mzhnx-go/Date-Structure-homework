@@ -5,7 +5,8 @@
 
 int main(int argc, char *argv[])
 {
-    initProjectRoot();
+    initProjectRoot(); //初始化文件路径
+    initFilePath();
     QApplication a(argc, argv);
      MainWindow w;
 
