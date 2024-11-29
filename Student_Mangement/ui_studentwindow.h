@@ -115,7 +115,7 @@ public:
 
         widget_7 = new QWidget(widget_2);
         widget_7->setObjectName("widget_7");
-        widget_7->setGeometry(QRect(20, 100, 931, 50));
+        widget_7->setGeometry(QRect(20, 99, 1021, 51));
         horizontalLayout_3 = new QHBoxLayout(widget_7);
         horizontalLayout_3->setObjectName("horizontalLayout_3");
         modify = new QPushButton(widget_7);

@@ -24,7 +24,7 @@
     <normaloff>:/bana.jpg</normaloff>:/bana.jpg</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(199, 255, 251);</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="widget" native="true">
    <property name="geometry">
@@ -34,6 +34,9 @@
      <width>1144</width>
      <height>644</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
    </property>
    <widget class="QWidget" name="widget_2" native="true">
     <property name="geometry">
@@ -169,6 +172,9 @@ color: rgb(255, 255, 255);</string>
        <height>20</height>
       </size>
      </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
      <property name="text">
       <string>修改成绩</string>
      </property>
@@ -232,7 +238,7 @@ color: rgb(255, 255, 255);</string>
       </size>
      </property>
     </widget>
-    <widget class="QLineEdit" name="inputText">
+    <widget class="QLineEdit" name="Id_or_name">
      <property name="geometry">
       <rect>
        <x>360</x>
@@ -240,6 +246,9 @@ color: rgb(255, 255, 255);</string>
        <width>200</width>
        <height>25</height>
       </rect>
+     </property>
+     <property name="maxLength">
+      <number>14</number>
      </property>
      <property name="placeholderText">
       <string>请输入学号或姓名</string>
@@ -309,7 +318,7 @@ color: rgb(255, 255, 255);</string>
       </size>
      </property>
     </widget>
-    <widget class="QLineEdit" name="lineEdit">
+    <widget class="QLineEdit" name="courseText">
      <property name="geometry">
       <rect>
        <x>680</x>

@@ -54,10 +54,11 @@ public:
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/bana.jpg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         TeacherWindow->setWindowIcon(icon);
-        TeacherWindow->setStyleSheet(QString::fromUtf8("background-color: rgb(199, 255, 251);"));
+        TeacherWindow->setStyleSheet(QString::fromUtf8(""));
         widget = new QWidget(TeacherWindow);
         widget->setObjectName("widget");
         widget->setGeometry(QRect(11, 11, 1144, 644));
+        widget->setStyleSheet(QString::fromUtf8(""));
         widget_2 = new QWidget(widget);
         widget_2->setObjectName("widget_2");
         widget_2->setGeometry(QRect(11, 11, 1122, 80));

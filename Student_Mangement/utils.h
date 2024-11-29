@@ -19,4 +19,5 @@ public:
         QHash<QString, Course> courseIdMap, QVector<TableAttribute> &tables);
 };
 
+
 #endif // UTILS_H

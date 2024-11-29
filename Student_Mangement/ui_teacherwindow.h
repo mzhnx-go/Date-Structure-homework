@@ -40,10 +40,10 @@ public:
     QPushButton *modify;
     QPushButton *display;
     QPushButton *delete_2;
-    QLineEdit *inputText;
+    QLineEdit *Id_or_name;
     QPushButton *searchStu;
     QPushButton *searchCor;
-    QLineEdit *lineEdit;
+    QLineEdit *courseText;
 
     void setupUi(QWidget *TeacherWindow)
     {
@@ -54,10 +54,11 @@ public:
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/bana.jpg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         TeacherWindow->setWindowIcon(icon);
-        TeacherWindow->setStyleSheet(QString::fromUtf8("background-color: rgb(199, 255, 251);"));
+        TeacherWindow->setStyleSheet(QString::fromUtf8(""));
         widget = new QWidget(TeacherWindow);
         widget->setObjectName("widget");
         widget->setGeometry(QRect(11, 11, 1144, 644));
+        widget->setStyleSheet(QString::fromUtf8(""));
         widget_2 = new QWidget(widget);
         widget_2->setObjectName("widget_2");
         widget_2->setGeometry(QRect(11, 11, 1122, 80));
@@ -103,7 +104,7 @@ public:
         horizontalLayout_4->addWidget(exit);
 
         tb_tea = new QTableWidget(widget);
-        tb_tea->setObjectName("tableWidget");
+        tb_tea->setObjectName("tb_tea");
         tb_tea->setGeometry(QRect(11, 152, 1051, 501));
         widget_6 = new QWidget(widget);
         widget_6->setObjectName("widget_6");
@@ -112,6 +113,7 @@ public:
         modify->setObjectName("modify");
         modify->setGeometry(QRect(50, 11, 90, 25));
         modify->setMinimumSize(QSize(50, 20));
+        modify->setStyleSheet(QString::fromUtf8(""));
         QIcon icon1;
         icon1.addFile(QString::fromUtf8(":/res/\344\277\256\346\224\271.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         modify->setIcon(icon1);
@@ -134,9 +136,10 @@ public:
         icon3.addFile(QString::fromUtf8(":/res/\345\210\240\351\231\244.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         delete_2->setIcon(icon3);
         delete_2->setIconSize(QSize(70, 20));
-        inputText = new QLineEdit(widget_6);
-        inputText->setObjectName("inputText");
-        inputText->setGeometry(QRect(360, 11, 200, 25));
+        Id_or_name = new QLineEdit(widget_6);
+        Id_or_name->setObjectName("Id_or_name");
+        Id_or_name->setGeometry(QRect(360, 11, 200, 25));
+        Id_or_name->setMaxLength(14);
         searchStu = new QPushButton(widget_6);
         searchStu->setObjectName("searchStu");
         searchStu->setGeometry(QRect(580, 13, 70, 21));
@@ -153,9 +156,9 @@ public:
         searchCor->setStyleSheet(QString::fromUtf8("padding-left: -10px"));
         searchCor->setIcon(icon4);
         searchCor->setIconSize(QSize(40, 30));
-        lineEdit = new QLineEdit(widget_6);
-        lineEdit->setObjectName("lineEdit");
-        lineEdit->setGeometry(QRect(680, 11, 230, 25));
+        courseText = new QLineEdit(widget_6);
+        courseText->setObjectName("courseText");
+        courseText->setGeometry(QRect(680, 11, 230, 25));
 
         retranslateUi(TeacherWindow);
 
@@ -171,10 +174,10 @@ public:
         modify->setText(QCoreApplication::translate("TeacherWindow", "\344\277\256\346\224\271\346\210\220\347\273\251", nullptr));
         display->setText(QCoreApplication::translate("TeacherWindow", "\346\230\276\347\244\272\346\210\220\347\273\251", nullptr));
         delete_2->setText(QCoreApplication::translate("TeacherWindow", "\345\210\240\351\231\244", nullptr));
-        inputText->setPlaceholderText(QCoreApplication::translate("TeacherWindow", "\350\257\267\350\276\223\345\205\245\345\255\246\345\217\267\346\210\226\345\247\223\345\220\215", nullptr));
+        Id_or_name->setPlaceholderText(QCoreApplication::translate("TeacherWindow", "\350\257\267\350\276\223\345\205\245\345\255\246\345\217\267\346\210\226\345\247\223\345\220\215", nullptr));
         searchStu->setText(QCoreApplication::translate("TeacherWindow", "\346\237\245\346\211\276", nullptr));
         searchCor->setText(QCoreApplication::translate("TeacherWindow", "\346\237\245\347\234\213\351\200\211\344\277\256\350\257\276\346\210\220\347\273\251", nullptr));
-        lineEdit->setPlaceholderText(QCoreApplication::translate("TeacherWindow", "\350\257\267\350\276\223\345\205\245\351\200\211\344\277\256\350\257\276\345\220\215\345\255\227", nullptr));
+        courseText->setPlaceholderText(QCoreApplication::translate("TeacherWindow", "\350\257\267\350\276\223\345\205\245\351\200\211\344\277\256\350\257\276\345\220\215\345\255\227", nullptr));
     } // retranslateUi
 
 };
