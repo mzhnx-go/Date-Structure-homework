@@ -8,6 +8,9 @@ debug/teacherwindow.o
 debug/course.o
 debug/score.o
 debug/student.o
+debug/tableattribute.o
+debug/users.o
+debug/utils.o
 debug/qrc_resource.o
 debug/moc_mainwindow.o
 debug/moc_page_login.o

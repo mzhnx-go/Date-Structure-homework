@@ -7,6 +7,8 @@ SOURCES += tst_file_test.cpp \
            ../user/student.cpp \
            ../user/course.cpp \
            ../filehandler.cpp \
+    ../user/tableattribute.cpp \
+    ../utils.cpp
 
 # 添加头文件搜索路径
 INCLUDEPATH += $$PWD/../user \
@@ -19,6 +21,8 @@ HEADERS += \
         ../user/student.h \
         ../user/course.h \
         ../filehandler.h \
+    ../user/tableattribute.h \
+    ../utils.h
 
 # 添加测试文件
 TESTS += tst_file_test.cpp

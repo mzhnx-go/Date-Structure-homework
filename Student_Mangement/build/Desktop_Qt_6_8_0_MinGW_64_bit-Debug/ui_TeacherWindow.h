@@ -35,7 +35,7 @@ public:
     QHBoxLayout *horizontalLayout_4;
     QLabel *username;
     QPushButton *exit;
-    QTableWidget *tableWidget;
+    QTableWidget *tb_tea;
     QWidget *widget_6;
     QPushButton *modify;
     QPushButton *display;
@@ -102,9 +102,9 @@ public:
 
         horizontalLayout_4->addWidget(exit);
 
-        tableWidget = new QTableWidget(widget);
-        tableWidget->setObjectName("tableWidget");
-        tableWidget->setGeometry(QRect(11, 152, 1051, 501));
+        tb_tea = new QTableWidget(widget);
+        tb_tea->setObjectName("tb_tea");
+        tb_tea->setGeometry(QRect(11, 152, 1051, 501));
         widget_6 = new QWidget(widget);
         widget_6->setObjectName("widget_6");
         widget_6->setGeometry(QRect(0, 100, 1041, 47));

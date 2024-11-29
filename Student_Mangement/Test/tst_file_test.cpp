@@ -7,6 +7,8 @@
 #include "../filehandler.h"
 #include "../global.h"
 #include "../user/score.h"
+#include "../user/tableattribute.h"
+#include "utils.h"
 class file_test : public QObject
 {
     Q_OBJECT
@@ -29,6 +31,7 @@ private slots:
     void test_loadStudent1();
     void test_loadStudent2(); //测试能否正确读取学生数据
     void test_loadCourses1(); //测试读取课程数据
+    void test_constructTableAttribue1(); //检测能否将数据加载在表中
 };
 
 file_test::file_test() {}
@@ -38,7 +41,8 @@ file_test::~file_test() {}
 void file_test::initTestCase()
 {
     QString currentPath = QDir::currentPath();
-    projectRoot = currentPath.left(currentPath.lastIndexOf("/Test/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug"));
+    projectRoot = currentPath.left(currentPath.lastIndexOf("/test/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug"));
+    initFilePath();
 }
 void file_test::cleanupTestCase()
 {
@@ -178,6 +182,69 @@ void file_test::test_loadCourses1() {
 
 }
 
+void file_test::test_constructTableAttribue1() {
+    QVector<Student> students;
+    QVector<Score> scores;
+    QVector<Course> courses;
+    //没有filename
+    if (!FileHandler::loadStudent(stuFilePath, students)) {
+        qWarning() << "无法打开学生数据";
+    }
+    if (!FileHandler::loadCourses(coursesFilePath, courses)) {
+        qWarning() << "无法打开课程数据";
+    }
+    if ( !FileHandler::loadScores(scoresFilePath, scores)) {
+        qWarning() << "无法打开成绩数据";
+    }
+    //使用哈希表存储数据
+    QHash<QString, Student> studentIdMap; // 以学生Id作为键值
+    QHash<QString, Student> studentCourseIdMap; //以学生所选课程Id作为键值
+    QHash<QPair<QString, QString>, Score> scoreMap; //以学生Id和课程Id组成复合键,学生Id在前,课程Id在后
+    QHash<QString, Course> courseIdMap; //以课程Id作为键值
+    for (const auto &student: students) {
+        studentIdMap[student.getId()] = student;
+    }
+    for (const auto &score: scores) {
+        scoreMap[qMakePair(score.getStudentId(), score.getCourseId())] = score;
+    }
+    for (const auto &course: courses) {
+        courseIdMap[course.getCourseId()] = course;
+    }
+    QVector<TableAttribute> tables;
+
+    if (!Utils::constructTableAttribue(students, scores, courses, studentIdMap, scoreMap, courseIdMap, tables)) {
+        qWarning() << "ERROR IN TeacherWindow::on_display_clicked(): 无法加载table数据";
+    }
+    for (int i = 0; i < tables.size(); i++) {
+        TableAttribute table = tables[i];
+        qDebug() << "学号" << table.getStudentId();
+        qDebug() << "姓名" << table.getStudentName();
+        qDebug() << "班级" << table.getClassName();
+        qDebug() << "课程名" << table.getSelectedCourse();
+        qDebug() << "小测分数" << table.getUnitGrade();
+        qDebug() << "期末成绩" << table.getFinalGrade();
+    }
+
+}
+
 QTEST_APPLESS_MAIN(file_test)
 
 #include "tst_file_test.moc"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

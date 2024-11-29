@@ -1,5 +1,7 @@
 
 #include "student.h"
+Student::Student(){}
+
 Student::Student(const QString &id, const QString &name, const QString &gender, const QString &grade, const QString &college, const QString &classInfo, const QSet<QString> &courses)
     : studentId(id), name(name), gender(gender), grade(grade), college(college), classInfo(classInfo), courses(courses)
 {

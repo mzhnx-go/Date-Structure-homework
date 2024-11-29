@@ -1,14 +1,22 @@
 #ifndef UTILS_H
 #define UTILS_H
 #include <QString>
+#include <QSet>
+#include "user/course.h"
+#include "user/score.h"
+#include "user/student.h"
+#include "user/users.h"
+#include "user/tableattribute.h"
+#include "global.h"
 class Utils
 {
 public:
     Utils();
-    static bool constructTableAttribue(3QHash<QString, Student> studentIdMap, // 以学生Id作为键值
-                                       QHash<QString, Student> studentCourseIdMap; //以学生所选课程Id作为键值
-                                       QHash<QPair<QString, QString>, Score> scoreMap; //以学生Id和课程Id组成复合键,学生Id在前,课程Id在后
-                                       QHash<QString, Course> courseIdMap;);
+    //构建列表展示属性
+    static bool constructTableAttribue(
+        const QVector<Student> &students, const QVector<Score> &scores, const QVector<Course> &courses, QHash<QString, Student> studentIdMap,
+        QHash<QPair<QString, QString>, Score> scoreMap,
+        QHash<QString, Course> courseIdMap, QVector<TableAttribute> &tables);
 };
 
 #endif // UTILS_H
