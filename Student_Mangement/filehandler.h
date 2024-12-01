@@ -22,13 +22,8 @@ public:
     static bool loadStudent(const QString &fileName, QVector<Student> &students);
     static bool loadScores(const QString &fileName, QVector<Score> &scores);
     static bool loadCourses(const QString &fileName, QVector<Course> &courses);
-    //TODO:: 将修改后的scores写入文件中
     static bool modifyScoresFile(QVector<Score> &scores, const QString &fileName);
 
-
-    //可能无用的函数
-    static bool addStudent(const QString &fileName, const QVector<Student> &students);
-    static bool deleteStudent(const QString &fileName, const QVector<Student> &students);
 
 private:
     FileHandler();

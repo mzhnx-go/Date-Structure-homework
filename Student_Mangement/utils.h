@@ -17,6 +17,7 @@ public:
         const QVector<Student> &students, const QVector<Score> &scores, const QVector<Course> &courses, QHash<QString, Student> studentIdMap,
         QHash<QPair<QString, QString>, Score> scoreMap,
         QHash<QString, Course> courseIdMap, QVector<TableAttribute> &tables);
+
 };
 
 

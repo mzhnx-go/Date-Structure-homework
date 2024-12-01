@@ -157,14 +157,12 @@ bool FileHandler:: loadCourses(const QString &fileName, QVector<Course> &courses
     return true;
 }
 
-bool FileHandler::addStudent(const QString &fileName, const QVector<Student> &students) {
-    //TODO::在文件中新加入学生数据
-    return false;
+//TODO::将修改后的学生成绩数据写入到score文件中去
+bool FileHandler::modifyScoresFile(QVector<Score> &scores, const QString &fileName)
+{
+
 }
-bool FileHandler::deleteStudent(const QString &fileName, const QVector<Student> &students) {
-    //TODO::删除文件中的学生数据
-    return false;
-}
+
 
 
 bool FileHandler::readFile(const QString &fileName,  QString &contents) {

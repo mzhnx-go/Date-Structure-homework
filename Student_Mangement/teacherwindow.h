@@ -1,6 +1,7 @@
 #ifndef TEACHERWINDOW_H
 #define TEACHERWINDOW_H
 #include "filehandler.h"
+#include "page_modify.h"
 #include <QWidget>
 
 namespace Ui {
@@ -25,8 +26,12 @@ private slots:
 
     void on_searchCor_clicked();
 
+    void on_modify_clicked();
+
 private:
     Ui::TeacherWindow *ui;
+    page_modify *modifyDialog;
+
 
 };
 

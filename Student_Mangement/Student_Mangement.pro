@@ -14,6 +14,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     page_login.cpp \
+    page_modify.cpp \
     studentwindow.cpp \
     teacherwindow.cpp \
     user/course.cpp \
@@ -28,6 +29,7 @@ HEADERS += \
     global.h \
     mainwindow.h \
     page_login.h \
+    page_modify.h \
     studentwindow.h \
     teacherwindow.h \
     user/course.h \
@@ -40,6 +42,7 @@ HEADERS += \
 FORMS += \
     mainwindow.ui \
     page_login.ui \
+    page_modify.ui \
     studentwindow.ui \
     teacherwindow.ui
 

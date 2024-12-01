@@ -3,6 +3,7 @@ debug/global.o
 debug/main.o
 debug/mainwindow.o
 debug/page_login.o
+debug/page_modify.o
 debug/studentwindow.o
 debug/teacherwindow.o
 debug/course.o
@@ -14,5 +15,6 @@ debug/utils.o
 debug/qrc_resource.o
 debug/moc_mainwindow.o
 debug/moc_page_login.o
+debug/moc_page_modify.o
 debug/moc_studentwindow.o
 debug/moc_teacherwindow.o

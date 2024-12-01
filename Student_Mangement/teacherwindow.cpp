@@ -13,6 +13,7 @@
 TeacherWindow::TeacherWindow(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::TeacherWindow)
+    , modifyDialog(nullptr)
 
 {
     ui->setupUi(this);
@@ -21,6 +22,9 @@ TeacherWindow::TeacherWindow(QWidget *parent)
 TeacherWindow::~TeacherWindow()
 {
     delete ui;
+    if(modifyDialog) {
+        delete modifyDialog;
+    }
 }
 
 
@@ -243,17 +247,15 @@ void TeacherWindow::on_searchCor_clicked()
     for (const auto &course : courses) {
         courseIdMap[course.getCourseId()] = course;
     }
-    //TODO::
-    //先匹配课程
-    //然后在通过课程和成绩匹配，成绩再与成绩匹配
+
+    bool isMatch = false;
     QVector<TableAttribute> matchedTables;
     for (const auto &course : courses) {
         if (course.getCourseId() == input || course.getCourseName() == input) {
+            isMatch = true;
             for (const auto &score : scores) {
                 if (score.getCourseId() == course.getCourseId()) {
-                    //课程和成绩匹配
                     const Student &student = studentIdMap[score.getStudentId()];
-                    //课程名、学号、姓名、班级名称、小测成绩、期末考试成绩
                     TableAttribute table(student.getId(), student.getName(), student.getClassInfo(), course.getCourseName(), score.getUnitTestList(), score.getFinalExamScore());
                     matchedTables.append(table);
                 }
@@ -261,6 +263,10 @@ void TeacherWindow::on_searchCor_clicked()
         }
     }
     if (matchedTables.isEmpty()) {
+        if (isMatch) {
+            QMessageBox::information(this, "提示", "该课程没有学生数据");
+            return;
+        }
         QMessageBox::information(this, "提示","没有该课程或不存在该课程信息");
         return;
     }
@@ -295,5 +301,18 @@ void TeacherWindow::on_searchCor_clicked()
         ui->tb_tea->setItem(row, 4 + maxUnitGrades, new QTableWidgetItem (QString::number(table.getFinalGrade())));
     }
 
+}
+
+//TODO::展示修改学生数据
+void TeacherWindow::on_modify_clicked()
+{
+    if (!modifyDialog) {
+        modifyDialog = new page_modify(this); // 创建对话框实例
+    }
+
+    // 显示对话框并等待用户操作完成
+    if (modifyDialog->exec() == QDialog::Accepted) {
+        // 如果用户点击了确认按钮，可以在这里刷新表格或执行其他操作
+    }
 }
 
