@@ -110,6 +110,7 @@ void page_modify::on_show_button_clicked()
     // 清除表格内容
     ui->modi_tab->clearContents();
     ui->modi_tab->setRowCount(0);
+    init(); //重新加载数据
     if (!FileHandler::loadStudent(stuFilePath, students)) {
         qWarning() << "无法打开学生数据";
         QMessageBox::warning(this, "警告", "无法打开学生数据文件");
@@ -294,9 +295,19 @@ void page_modify::on_sure_button_clicked()
 
     matchedScore->setFinalExamScore(finalGrade);
     matchedScore->setUnitTestList(unitGrades);
+    if (!FileHandler::saveScoreFiles(scores, scoresFilePath)) {
+        QMessageBox::warning(this, tr("警告"), tr("修改文件失败"));
+        return;
+    }
+    QMessageBox::information(this, "提示", "修改成功");
+    init();
+    this->close();
+}
 
-    //将修改后的数据写入到文件中
-    //TODO::在FileHandler中完成saveScoreFile函数
-    FileHandler::saveScoreFiles(scores, scoresFilePath);
+void page_modify::init()
+{
+    students.clear();
+    courses.clear();
+    scores.clear();
 }
 

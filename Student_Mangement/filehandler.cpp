@@ -171,7 +171,7 @@ bool FileHandler::saveScoreFiles(const QVector<Score> &scores, const QString &fi
 
         contents += QString(" final %1\n").arg(score.getFinalExamScore());
     }
-
+    qDebug() << contents;
     return writeFile(fileName, contents.trimmed());
 }
 
@@ -194,7 +194,7 @@ bool FileHandler::readFile(const QString &fileName,  QString &contents) {
 
 bool FileHandler::writeFile(const QString &fileName, const QString &contents) {
     QFile file(fileName);
-    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate)) { // 添加 Truncate 标志
         qWarning() << "'Error in writeFile' 无法打开文件:" << fileName;
         QWidget *parent = nullptr; // 如果有父窗口，可以传递父窗口指针
         QMessageBox::critical(parent, "错误", "无法打开文件：" + fileName);

@@ -46,6 +46,7 @@ private:
     QVector<Student> students;
     QVector<Course> courses;
     QVector<Score> scores;
+    void init();
 };
 
 #endif // PAGE_MODIFY_H
