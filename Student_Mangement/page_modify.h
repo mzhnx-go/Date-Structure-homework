@@ -38,8 +38,14 @@ private slots:
     void handleItemChanged(QTableWidgetItem *item);
     void on_show_button_clicked();
 
+
+    void on_sure_button_clicked();
+
 private:
     Ui::page_modify *ui;
+    QVector<Student> students;
+    QVector<Course> courses;
+    QVector<Score> scores;
 };
 
 #endif // PAGE_MODIFY_H

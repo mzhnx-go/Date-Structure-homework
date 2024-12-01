@@ -15,6 +15,9 @@ public:
     double getFinalExamScore() const { return finalExamScore; }
     QList<double> getUnitTestList() const { return unitTestList; }
     QString getCourseId() const {return courseId;}
+    void setUnitTestList(QList<double> unitTestList);
+    void setFinalExamScore(double finalExamScore);
+
 private:
     QString studentId;
     QString courseId;

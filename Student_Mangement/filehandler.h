@@ -22,7 +22,7 @@ public:
     static bool loadStudent(const QString &fileName, QVector<Student> &students);
     static bool loadScores(const QString &fileName, QVector<Score> &scores);
     static bool loadCourses(const QString &fileName, QVector<Course> &courses);
-    static bool modifyScoresFile(QVector<Score> &scores, const QString &fileName);
+    static bool saveScoreFiles(const QVector<Score> &scores, const QString &fileName);
 
 
 private:

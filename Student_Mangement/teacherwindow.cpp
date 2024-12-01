@@ -303,16 +303,13 @@ void TeacherWindow::on_searchCor_clicked()
 
 }
 
-//TODO::展示修改学生数据
+
 void TeacherWindow::on_modify_clicked()
 {
     if (!modifyDialog) {
         modifyDialog = new page_modify(this); // 创建对话框实例
     }
+    modifyDialog->exec();
 
-    // 显示对话框并等待用户操作完成
-    if (modifyDialog->exec() == QDialog::Accepted) {
-        // 如果用户点击了确认按钮，可以在这里刷新表格或执行其他操作
-    }
 }
 

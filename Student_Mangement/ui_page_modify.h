@@ -42,7 +42,7 @@ public:
     QLabel *label_4;
     QWidget *widget_5;
     QHBoxLayout *horizontalLayout_4;
-    QPushButton *pushButton_2;
+    QPushButton *sure_button;
     QSpacerItem *horizontalSpacer;
     QPushButton *pushButton_3;
     QTableWidget *modi_tab;
@@ -121,10 +121,10 @@ public:
         widget_5->setGeometry(QRect(20, 350, 441, 41));
         horizontalLayout_4 = new QHBoxLayout(widget_5);
         horizontalLayout_4->setObjectName("horizontalLayout_4");
-        pushButton_2 = new QPushButton(widget_5);
-        pushButton_2->setObjectName("pushButton_2");
+        sure_button = new QPushButton(widget_5);
+        sure_button->setObjectName("sure_button");
 
-        horizontalLayout_4->addWidget(pushButton_2);
+        horizontalLayout_4->addWidget(sure_button);
 
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
@@ -156,7 +156,7 @@ public:
         label_3->setText(QCoreApplication::translate("page_modify", "\344\277\256\346\224\271\346\210\220\347\273\251", nullptr));
         show_button->setText(QCoreApplication::translate("page_modify", "\346\230\276\347\244\272\346\210\220\347\273\251\346\225\260\346\215\256", nullptr));
         label_4->setText(QCoreApplication::translate("page_modify", "\350\257\267\345\234\250\350\241\250\346\240\274\344\270\255\344\277\256\346\224\271\346\210\220\347\273\251\346\225\260\346\215\256\357\274\210\344\277\256\346\224\271\346\227\266\350\257\267\346\214\211\344\270\213\345\233\236\350\275\246\357\274\211", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("page_modify", "\347\241\256\350\256\244\344\277\256\346\224\271", nullptr));
+        sure_button->setText(QCoreApplication::translate("page_modify", "\347\241\256\350\256\244\344\277\256\346\224\271", nullptr));
         pushButton_3->setText(QCoreApplication::translate("page_modify", "\345\217\226\346\266\210\344\277\256\346\224\271", nullptr));
     } // retranslateUi
 

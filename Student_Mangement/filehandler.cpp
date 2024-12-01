@@ -157,11 +157,24 @@ bool FileHandler:: loadCourses(const QString &fileName, QVector<Course> &courses
     return true;
 }
 
-//TODO::将修改后的学生成绩数据写入到score文件中去
-bool FileHandler::modifyScoresFile(QVector<Score> &scores, const QString &fileName)
+//将scores写入到score.txt中
+bool FileHandler::saveScoreFiles(const QVector<Score> &scores, const QString &fileName)
 {
+    QString contents;
+    for (const auto &score : scores) {
+        contents += QString("%1 %2").arg(score.getStudentId()).arg(score.getCourseId());
 
+        const QList<double> &unitTests = score.getUnitTestList();
+        for (double grade : unitTests) {
+            contents += QString(" %1").arg(grade);
+        }
+
+        contents += QString(" final %1\n").arg(score.getFinalExamScore());
+    }
+
+    return writeFile(fileName, contents.trimmed());
 }
+
 
 
 
