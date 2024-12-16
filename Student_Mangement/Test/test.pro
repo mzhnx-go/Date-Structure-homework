@@ -3,6 +3,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 SOURCES += tst_file_test.cpp \
            ../global.cpp \
+    ../user/optioncourse.cpp \
     ../user/score.cpp \
            ../user/student.cpp \
            ../user/course.cpp \
@@ -17,6 +18,7 @@ INCLUDEPATH += $$PWD/../user \
 # 添加头文件
 HEADERS += \
         ../global.h \
+    ../user/optioncourse.h \
     ../user/score.h \
         ../user/student.h \
         ../user/course.h \

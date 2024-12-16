@@ -96,8 +96,8 @@ void TeacherWindow::on_display_clicked()
             QString grade = col < table.getUnitGrade().size() ? QString::number(table.getUnitGrade()[col]) : "无";
             ui->tb_tea->setItem(row, 4 + col, new QTableWidgetItem(grade));
         }
-
-        ui->tb_tea->setItem(row, 4 + maxUnitGrades, new QTableWidgetItem(QString::number(table.getFinalGrade())));
+        QString finalScores = table.getFinalGrade() == -(1.0) ? "无" : QString::number(table.getFinalGrade());
+        ui->tb_tea->setItem(row, 4 + maxUnitGrades, new QTableWidgetItem(finalScores));
     }
 
 }

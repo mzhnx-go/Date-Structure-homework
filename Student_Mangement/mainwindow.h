@@ -21,7 +21,7 @@ public:
     ~MainWindow();
 
 private slots:
-    void handleLoginSuccess(Page_login::UserType userType);
+    void handleLoginSuccess(Page_login::UserType userType, QString usersId);
 
 private:
     Ui::MainWindow *ui;

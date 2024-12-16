@@ -31,7 +31,7 @@ public:
                        const QString &className, const QList<double> &unitGrades, double finalGrade,
                        bool editable, const QString &type);
 protected:
-    void closeEvent(QCloseEvent *event) override; // 声明 closeEvent 方法
+    void closeEvent(QCloseEvent *event) override;
 
 private slots:
     void on_pushButton_3_clicked();

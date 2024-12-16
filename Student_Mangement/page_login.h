@@ -16,9 +16,7 @@ class Page_login : public QWidget
 public:
     explicit Page_login(QWidget *parent = nullptr);
       ~Page_login();
-    //TODO::注意Admin用于调试，待完成后要删除
     enum UserType {Teacher, Student, Invaild};
-
 private slots:
     void on_btn_login_clicked();
 
@@ -28,8 +26,10 @@ private slots:
 private:
     Ui::Page_login *ui;
     UserType userType;
+    bool isStudent(const QString &username, const QString &password);
+    bool isTeacher(const QString &username, const QString &password);
 signals:
-    void sendLoginSuccess(UserType userType); //添加用户类型参数，比如学生和老师
+    void sendLoginSuccess(UserType userType, QString usersId); //添加用户类型参数，比如学生和老师
 };
 
 

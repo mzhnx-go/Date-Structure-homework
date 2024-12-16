@@ -9,6 +9,7 @@
 #include "../user/score.h"
 #include "../user/tableattribute.h"
 #include "utils.h"
+#include "../user/optioncourse.h"
 class file_test : public QObject
 {
     Q_OBJECT
@@ -32,6 +33,8 @@ private slots:
     void test_loadStudent2(); //测试能否正确读取学生数据
     void test_loadCourses1(); //测试读取课程数据
     void test_constructTableAttribue1(); //检测能否将数据加载在表中
+    void test_loadOptionCourse1();
+    void test_modifyOptionCourse1();
 };
 
 file_test::file_test() {}
@@ -227,6 +230,67 @@ void file_test::test_constructTableAttribue1() {
 
 }
 
+//测试加载可选课程
+void file_test::test_loadOptionCourse1() {
+    QVector<OptionCourse> courses;
+    if (!FileHandler::loadOptionalCourse(optionCourseFilePath, courses)) {
+        qWarning() << "无法打开OptionalCourse文件";
+        return;
+    }
+    for (int i = 0; i < courses.size(); i++) {
+        OptionCourse optionCourse = courses[i];
+        qDebug() << optionCourse.getCourseId();
+        qDebug() << optionCourse.getlastCourseNumber();
+    }
+}
+
+void file_test::test_modifyOptionCourse1() {
+    // 创建临时文件
+    QTemporaryFile tempFile;
+    if (!tempFile.open()) {
+        qWarning() << "无法创建临时文件";
+        QFAIL("无法创建临时文件");
+    }
+    QString tempFileName = tempFile.fileName();
+    tempFile.close(); // 关闭临时文件，以便其他函数可以打开它
+
+    // 准备测试数据
+    QVector<OptionCourse> courses = {
+        OptionCourse("C1717", 5),
+        OptionCourse("C2344", 20),
+        OptionCourse("C4230", 10),
+        OptionCourse("C8215", 5),
+        OptionCourse("C2467", 3),
+        OptionCourse("C5036", 25),
+        OptionCourse("C9742", 30),
+        OptionCourse("C7755", 35),
+        OptionCourse("C5501", 40)
+    };
+
+    // 调用 modifyCourses 方法
+    QVERIFY(FileHandler::modifyCourses(courses, tempFileName));
+
+    // 验证文件内容
+    QFile file(tempFileName);
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QTextStream in(&file);
+        QString actualContent = in.readAll();
+        QString expectedContent =
+            "C1717 5\n"
+            "C2344 20\n"
+            "C4230 10\n"
+            "C8215 5\n"
+            "C2467 3\n"
+            "C5036 25\n"
+            "C9742 30\n"
+            "C7755 35\n"
+            "C5501 40";
+        QCOMPARE(actualContent, expectedContent);
+        file.close();
+    } else {
+        QFAIL("Failed to open the modified file for reading.");
+    }
+}
 QTEST_APPLESS_MAIN(file_test)
 
 #include "tst_file_test.moc"

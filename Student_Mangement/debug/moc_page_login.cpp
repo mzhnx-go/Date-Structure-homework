@@ -40,6 +40,7 @@ constexpr auto qt_meta_stringdata_CLASSPage_loginENDCLASS = QtMocHelpers::string
     "",
     "UserType",
     "userType",
+    "usersId",
     "on_btn_login_clicked",
     "on_btn_exit_clicked"
 );
@@ -62,14 +63,14 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSPage_loginENDCLASS[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   32,    2, 0x06,    1 /* Public */,
+       1,    2,   32,    2, 0x06,    1 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       5,    0,   35,    2, 0x08,    3 /* Private */,
-       6,    0,   36,    2, 0x08,    4 /* Private */,
+       6,    0,   37,    2, 0x08,    4 /* Private */,
+       7,    0,   38,    2, 0x08,    5 /* Private */,
 
  // signals: parameters
-    QMetaType::Void, 0x80000000 | 3,    4,
+    QMetaType::Void, 0x80000000 | 3, QMetaType::QString,    4,    5,
 
  // slots: parameters
     QMetaType::Void,
@@ -90,6 +91,7 @@ Q_CONSTINIT const QMetaObject Page_login::staticMetaObject = { {
         // method 'sendLoginSuccess'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<UserType, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         // method 'on_btn_login_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_btn_exit_clicked'
@@ -104,7 +106,7 @@ void Page_login::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<Page_login *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->sendLoginSuccess((*reinterpret_cast< std::add_pointer_t<UserType>>(_a[1]))); break;
+        case 0: _t->sendLoginSuccess((*reinterpret_cast< std::add_pointer_t<UserType>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
         case 1: _t->on_btn_login_clicked(); break;
         case 2: _t->on_btn_exit_clicked(); break;
         default: ;
@@ -112,7 +114,7 @@ void Page_login::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (Page_login::*)(UserType );
+            using _t = void (Page_login::*)(UserType , QString );
             if (_t _q_method = &Page_login::sendLoginSuccess; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 0;
                 return;
@@ -152,9 +154,9 @@ int Page_login::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void Page_login::sendLoginSuccess(UserType _t1)
+void Page_login::sendLoginSuccess(UserType _t1, QString _t2)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_WARNING_POP

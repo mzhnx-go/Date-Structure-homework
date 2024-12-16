@@ -21,7 +21,7 @@ MainWindow::~MainWindow()
     delete studentWindow; //清理学生窗口
 }
 
-void MainWindow::handleLoginSuccess(Page_login::UserType userType) {
+void MainWindow::handleLoginSuccess(Page_login::UserType userType, QString usersId) {
     // 处理登录成功的情况
     if (userType == Page_login::Teacher) {
         if (teacherWindow && !teacherWindow->isVisible()) {
@@ -33,10 +33,12 @@ void MainWindow::handleLoginSuccess(Page_login::UserType userType) {
         studentWindow = nullptr; // 关闭并释放学生窗口对象
     } else if (userType == Page_login::Student) {
         if (studentWindow && !studentWindow->isVisible()) {
+            studentWindow->setStudentId(usersId);
             studentWindow->show();
         } else {
             studentWindow = new StudentWindow();
             studentWindow->show();
+            studentWindow->setStudentId(usersId);
         }
         teacherWindow = nullptr; // 关闭并释放教师窗口对象
     } else {

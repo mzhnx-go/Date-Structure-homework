@@ -15,9 +15,11 @@ SOURCES += \
     mainwindow.cpp \
     page_login.cpp \
     page_modify.cpp \
+    show_optional_course.cpp \
     studentwindow.cpp \
     teacherwindow.cpp \
     user/course.cpp \
+    user/optioncourse.cpp \
     user/score.cpp \
     user/student.cpp \
     user/tableattribute.cpp \
@@ -30,9 +32,11 @@ HEADERS += \
     mainwindow.h \
     page_login.h \
     page_modify.h \
+    show_optional_course.h \
     studentwindow.h \
     teacherwindow.h \
     user/course.h \
+    user/optioncourse.h \
     user/score.h \
     user/student.h \
     user/tableattribute.h \
@@ -43,6 +47,7 @@ FORMS += \
     mainwindow.ui \
     page_login.ui \
     page_modify.ui \
+    show_optional_course.ui \
     studentwindow.ui \
     teacherwindow.ui
 

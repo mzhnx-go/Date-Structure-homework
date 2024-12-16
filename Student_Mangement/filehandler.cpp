@@ -33,8 +33,6 @@ bool FileHandler::loadUsers(const QString &fileName, QMap<QString, QString>&user
         } else {
             QString account = parts[0];
             QString password = parts[1];
-
-            // 注意：如果用户名在文件中不是唯一的，这将覆盖先前的条目
             users[account] = password;
         }
     }
@@ -76,7 +74,6 @@ bool FileHandler::loadStudent(const QString &fileName, QVector<Student> &student
 }
 
 
-//TODO::加入课程Id
 bool FileHandler::loadScores(const QString &fileName, QVector<Score> &scores) {
     QFile file(fileName);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -87,12 +84,12 @@ bool FileHandler::loadScores(const QString &fileName, QVector<Score> &scores) {
     QTextStream in(&file);
     while (!in.atEnd()) {
         QString line = in.readLine().trimmed();
-        if (line.isEmpty() || line.contains("#")) { // Skip empty lines and comments
+        if (line.isEmpty() || line.contains("#")) {
             continue;
         }
 
         QStringList parts = line.split(' ', Qt::SkipEmptyParts);
-        if (parts.size() < 3) {
+        if (parts.size() < 2) {
             qWarning() << "Invalid line format:" << line;
             continue;
         }
@@ -121,14 +118,9 @@ bool FileHandler::loadScores(const QString &fileName, QVector<Score> &scores) {
         double finalScore = -1;
         if (!finalScoreOk) {
             //没有期末成绩
-            qDebug() << "final score don't exist" << line;
         } else {
             finalScore = parts[finalIndex].toDouble(&finalScoreConvert);
         }
-        if (!finalScoreConvert) {
-            qDebug() << "期末成绩转成浮点类型失败";
-        }
-
         scores.append(Score(studentId, courseId,  finalScore, unitTestList));
     }
 
@@ -157,7 +149,29 @@ bool FileHandler:: loadCourses(const QString &fileName, QVector<Course> &courses
     return true;
 }
 
-//将scores写入到score.txt中
+bool FileHandler::loadOptionalCourse(const QString &fileName, QVector<OptionCourse> &courses)
+{
+    QString contents;
+    if (!readFile(fileName, contents)) {
+        qWarning() << "ERROR IN FileHandler::loadOptionalCourse:: 无法打开OptionalCourses文件";
+        return false;
+    }
+    QTextStream stream(&contents);
+    while (!stream.atEnd()) {
+        QString line = stream.readLine();
+        if (line.isEmpty()) {
+            continue;
+        }
+        QStringList parts =  line.split(QRegularExpression("\\s+"), Qt::SkipEmptyParts);
+        if (parts.size() < 2) {
+            qWarning() << "ERROR IN FileHandler::loadOptionalCourse: 缺少基本数据";
+        }
+        OptionCourse optionCourse(parts[0], parts[1].toInt());
+        courses.append(optionCourse);
+    }
+    return true;
+}
+
 bool FileHandler::saveScoreFiles(const QVector<Score> &scores, const QString &fileName)
 {
     QString contents;
@@ -171,7 +185,16 @@ bool FileHandler::saveScoreFiles(const QVector<Score> &scores, const QString &fi
 
         contents += QString(" final %1\n").arg(score.getFinalExamScore());
     }
-    qDebug() << contents;
+    return writeFile(fileName, contents.trimmed());
+}
+
+bool FileHandler::modifyCourses(const QVector<OptionCourse> &courses, const QString &fileName)
+{
+    QString contents;
+    for (const auto &course : courses) {
+        contents += course.getCourseId().trimmed() + " " + QString::number(course.getlastCourseNumber()) + "\n";
+    }
+
     return writeFile(fileName, contents.trimmed());
 }
 

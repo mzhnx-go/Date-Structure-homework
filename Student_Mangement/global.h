@@ -13,6 +13,7 @@ extern const QString coursesReFilePath;
 extern const QString scoresReFilePath;
 extern const QString stuUserReFilePath;
 extern const QString teacherUserReFilePath;
+extern const QString optionCourseReFilePath;
 extern QString projectRoot;
 
 extern QString stuFilePath;
@@ -20,8 +21,7 @@ extern QString coursesFilePath;
 extern QString stuUserFilePath;
 extern QString scoresFilePath;
 extern QString teacherUserFilePath;
-
-
+extern QString optionCourseFilePath;
 // 初始化项目文件根目录
 void initProjectRoot();
 
