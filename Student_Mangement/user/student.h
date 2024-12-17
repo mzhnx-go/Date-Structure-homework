@@ -13,7 +13,7 @@ private:
     QString grade;
     QString college;
     QString classInfo;
-    QSet<QString> courses;
+    QSet<QString> courses; //存放courseId
 
 public:
     Student();
@@ -40,7 +40,7 @@ public:
     QString getClassInfo() const { return classInfo; }
     QSet<QString> getCourses() const { return courses; }
      bool operator==(const Student &other) const;
-
+    bool hasSelectedCourse(const Course &course); //判断有无选择这门课程
 
 };
 

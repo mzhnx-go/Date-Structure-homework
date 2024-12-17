@@ -20,6 +20,10 @@ void StudentWindow::setStudentId(QString studentId)
     this->studentId = studentId;
 }
 
+Student& StudentWindow::getCurrentStudent() {
+    return currentStudent;
+}
+
 void StudentWindow::on_exit_clicked()
 {
      QApplication::quit();
@@ -29,7 +33,7 @@ void StudentWindow::on_exit_clicked()
 void StudentWindow::on_show_course_clicked()
 {
     if (!_optionCourse) {
-        _optionCourse = new show_optional_course(this);
+        _optionCourse = new show_optional_course(this,getCurrentStudent());
     }
     _optionCourse->exec(); // 模态对话框
 }

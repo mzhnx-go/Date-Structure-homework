@@ -28,7 +28,7 @@ public:
     QLabel *label;
     QWidget *widget;
     QHBoxLayout *horizontalLayout;
-    QPushButton *pushButton;
+    QPushButton *sure_choice;
     QSpacerItem *horizontalSpacer;
     QPushButton *pushButton_2;
 
@@ -53,10 +53,10 @@ public:
         widget->setGeometry(QRect(33, 420, 311, 42));
         horizontalLayout = new QHBoxLayout(widget);
         horizontalLayout->setObjectName("horizontalLayout");
-        pushButton = new QPushButton(widget);
-        pushButton->setObjectName("pushButton");
+        sure_choice = new QPushButton(widget);
+        sure_choice->setObjectName("sure_choice");
 
-        horizontalLayout->addWidget(pushButton);
+        horizontalLayout->addWidget(sure_choice);
 
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
@@ -77,7 +77,7 @@ public:
     {
         show_optional_course->setWindowTitle(QCoreApplication::translate("show_optional_course", "Dialog", nullptr));
         label->setText(QCoreApplication::translate("show_optional_course", "\351\200\211\346\213\251\350\257\276\347\250\213", nullptr));
-        pushButton->setText(QCoreApplication::translate("show_optional_course", "\347\241\256\345\256\232\351\200\211\346\213\251", nullptr));
+        sure_choice->setText(QCoreApplication::translate("show_optional_course", "\347\241\256\345\256\232\351\200\211\346\213\251", nullptr));
         pushButton_2->setText(QCoreApplication::translate("show_optional_course", "\345\217\226\346\266\210\351\200\211\346\213\251", nullptr));
     } // retranslateUi
 

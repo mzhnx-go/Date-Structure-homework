@@ -8,6 +8,7 @@ public:
     OptionCourse() = default;
     QString getCourseId() const;
     int getlastCourseNumber() const;
+    void setLastCourseNumber(const int &newNumber);
 private:
     QString courseId;
     int lastCourseNumber; //剩余课程数量

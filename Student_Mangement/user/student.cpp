@@ -18,3 +18,11 @@ bool Student::operator==(const Student &other) const
             classInfo == other.classInfo &&
             courses == other.courses);
 }
+
+bool Student::hasSelectedCourse(const Course &course)
+{
+    if(courses.contains(course.getCourseId())) {
+        return true;
+    }
+    return false;
+}

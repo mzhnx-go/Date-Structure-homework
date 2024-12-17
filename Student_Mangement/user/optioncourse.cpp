@@ -15,3 +15,9 @@ OptionCourse::OptionCourse(QString courseId, int lastCourseNumber)
 {
     return lastCourseNumber;
 }
+
+void OptionCourse::setLastCourseNumber(const int &newNumber)
+{
+    lastCourseNumber = newNumber;
+}
+

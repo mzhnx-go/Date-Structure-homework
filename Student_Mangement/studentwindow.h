@@ -17,6 +17,7 @@ public:
     explicit StudentWindow(QWidget *parent = nullptr);
     ~StudentWindow();
     void setStudentId(QString studentId);
+     Student& getCurrentStudent();
 private slots:
     void on_exit_clicked();
 
@@ -27,7 +28,7 @@ private:
     QString studentId; //学号
     show_optional_course *_optionCourse;
     QSet<QString> selected_courseId; //该学生选择的课程号
-    
+    Student currentStudent;
 };
 
 #endif // STUDENTWINDOW_H
