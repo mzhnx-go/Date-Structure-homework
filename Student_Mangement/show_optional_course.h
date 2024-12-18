@@ -41,7 +41,11 @@ private:
     QStandardItemModel *model;
     QVector<int> selectedIndexes;
     Student &currentStudent;
+    QVector<Score> scores;
+    QVector<Student> students; //用于保存文件
+    QHash<QString, Student> studentHash; //用于更新数据
     void loadCourses();
+    void updateStudents();
     bool initDatas();
 };
 

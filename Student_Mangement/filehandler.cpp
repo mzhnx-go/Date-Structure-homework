@@ -200,6 +200,44 @@ bool FileHandler::modifyCourses(const QVector<OptionCourse> &courses, const QStr
 }
 
 
+bool FileHandler::saveOptionalCourse(const QString &fileName, QVector<OptionCourse> optionCourses)
+{
+    QString contents;
+    for (const auto &course : optionCourses) {
+        contents += QString("%1 %2\n").arg(course.getCourseId()).arg(course.getlastCourseNumber());
+    }
+
+    return writeFile(fileName, contents.trimmed());
+}
+bool FileHandler::saveStudentFile(const QVector<Student> &students, const QString &fileName)
+{
+    QString contents;
+    for (const auto &student : students) {
+        // 构造每行的内容，使用空格分隔各个字段
+        contents += student.getId() + " "
+                    + student.getName() + " "
+                    + student.getGender() + " "
+                    + student.getGrade() + " "
+                    + student.getCollege() + " "
+                    + student.getClassInfo();
+
+        // 添加选修课程编号
+        QSet<QString> courses = student.getCourses();
+        if (!courses.isEmpty()) {
+            for (const QString &courseId : qAsConst(courses)) {
+                contents += " " + courseId;
+            }
+        }
+
+        // 每个学生信息后换行
+        contents += "\n";
+    }
+
+    // 写入文件并返回操作结果
+    return writeFile(fileName, contents.trimmed());
+}
+
+
 
 
 bool FileHandler::readFile(const QString &fileName,  QString &contents) {

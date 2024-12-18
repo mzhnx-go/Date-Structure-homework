@@ -25,7 +25,8 @@ public:
     static bool loadOptionalCourse(const QString &fileName, QVector<OptionCourse> &courses);
     static bool saveScoreFiles(const QVector<Score> &scores, const QString &fileName);
     static bool modifyCourses(const QVector<OptionCourse> &courses, const QString &fileName); //将修改后的数组保存到文件中
-
+    static bool saveOptionalCourse(const QString &fileName, QVector<OptionCourse> optionCourses);
+    static bool saveStudentFile(const QVector<Student> &students, const QString &fileName);
 private:
     FileHandler();
     ~FileHandler();

@@ -31,6 +31,8 @@ void show_optional_course::on_pushButton_2_clicked()
 }
 
 void show_optional_course::loadCourses() {
+
+    //每次加载课程前重新加载数据
     if (!initDatas()) {
         qWarning() << "ERROR IN show_optional_course::loadCourses(): 初始化数据失败";
         return;
@@ -52,6 +54,21 @@ void show_optional_course::loadCourses() {
     }
 }
 
+void show_optional_course::updateStudents()
+{
+    if (studentHash.contains(currentStudent.getId())) {
+        studentHash[currentStudent.getId()] = currentStudent;
+    } else {
+        qWarning() << "ERROR: Student ID not found in the list";
+    }
+
+    // 将 studentHash 转换回 students 向量
+    students.clear();
+    for (auto it = studentHash.begin(); it != studentHash.end(); ++it) {
+        students.append(it.value());
+    }
+}
+
 bool show_optional_course::initDatas()
 {
     if (!FileHandler::loadCourses(coursesFilePath, courses)) {
@@ -62,13 +79,31 @@ bool show_optional_course::initDatas()
         qWarning() << "ERROR IN show_optional_course::initDatas,loadOptionalCourse";
         return false;
     }
+
+    if (!FileHandler::loadScores(scoresFilePath,scores)) {
+        qWarning() << "ERROR IN show_optional_course::initDatas,loadScores";
+    }
+
+    if (!FileHandler::loadStudent(stuFilePath, students)) {
+         qWarning() << "ERROR IN show_optional_course::initDatas,loadStudent";
+    }
+
+    //构建哈希表
+    for (const auto &student : students) {
+        studentHash[student.getId()] = student;
+    }
+
     Utils::matchCourseAndOptionCourse(courses,optionCourses, mapCourses);
     return true;
 }
 
+
+
 /*TODO::测试课程满了的条件，能否成功写入文件
  * 修改 Utils::matchCourseAndOptionCourse(courses,optionCourses, mapCourses)
  * 如果课程数已经为零就不需要加入到map中
+ * 1.将确定后的数据保存在currentStudent中
+ * 2.修改Student表，修改score表,修改OptionCourse表
  */
 void show_optional_course::on_sure_choice_clicked()
 {
@@ -104,6 +139,13 @@ void show_optional_course::on_sure_choice_clicked()
         int newLastCourseNumber = optionCourse.getlastCourseNumber() - 1;
         optionCourse.setLastCourseNumber(newLastCourseNumber);
 
+        //加入新数据
+        //TODO::完成学生数据修改
+        Score newscore = Score(currentStudent.getId(), course.getCourseId());
+        scores.append(newscore);
+        updateStudents();
+
+
         // 如果剩余数量为0，从 map 中移除该课程
         if (newLastCourseNumber == 0) {
             mapCourses.remove(courseId);
@@ -120,15 +162,29 @@ void show_optional_course::on_sure_choice_clicked()
 
     //TODO::完成文件保存函数
     // // 保存更改到文件
-    // if (!FileHandler::saveCourses(coursesFilePath, courses)) {
-    //     qWarning() << "ERROR IN show_optional_course::on_sure_choice_clicked, saveCourses";
-    // }
-    // if (!FileHandler::saveOptionalCourse(optionCourseFilePath, optionCourses)) {
-    //     qWarning() << "ERROR IN show_optional_course::on_sure_choice_clicked, saveOptionalCourse";
-    // }
+
+    if (!FileHandler::saveOptionalCourse(optionCourseFilePath, optionCourses)) {
+        qWarning() << "ERROR IN show_optional_course::on_sure_choice_clicked, saveOptionalCourse";
+    }
+
+    if (!FileHandler::saveScoreFiles(scores, scoresFilePath)) {
+        qWarning() << "ERROR IN show_optional_course::on_sure_choice_clicked, saveScoreFiles";
+    }
+
+    if (!FileHandler::saveStudentFile(students, stuFilePath)) {
+        qWarning() << "ERROR IN show_optional_course::on_sure_choice_clicked, saveStudentFile";
+    }
+
+
+    //TODO::调试完后删除下列语句
+    //Debug打印数据部分
+    for (const auto &score: scores) {
+        qDebug() << score.getStudentId() << " " << score.getCourseId() << " " << score.getUnitTestList();
+    }
 
     // 关闭对话框
     this->close();
+
 }
 
 void show_optional_course::onSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected) {
@@ -159,7 +215,7 @@ void show_optional_course::onSelectionChanged(const QItemSelection &selected, co
     }
 
     // 检查是否达到了选择课程的数量限制，并且只提示一次
-    if (currentSelectedCoursesCount + newSelectionCount == 4 && !limitReached) {
+    if (currentSelectedCoursesCount + newSelectionCount > 4 && !limitReached) {
         QMessageBox::information(this, "提示", "您已经选择了4门课程，不能再选择了！");
         limitReached = true;
     } else if (currentSelectedCoursesCount + newSelectionCount < 4) {
