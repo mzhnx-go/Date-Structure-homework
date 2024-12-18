@@ -139,11 +139,20 @@ void show_optional_course::on_sure_choice_clicked()
         int newLastCourseNumber = optionCourse.getlastCourseNumber() - 1;
         optionCourse.setLastCourseNumber(newLastCourseNumber);
 
+
+
         //加入新数据
         //TODO::完成学生数据修改
         Score newscore = Score(currentStudent.getId(), course.getCourseId());
         scores.append(newscore);
         updateStudents();
+
+        for (auto &oc : optionCourses) {
+            if (oc.getCourseId() == courseId) {
+                oc.setLastCourseNumber(newLastCourseNumber);
+                break;
+            }
+        }
 
 
         // 如果剩余数量为0，从 map 中移除该课程
