@@ -36,9 +36,8 @@ void MainWindow::handleLoginSuccess(Page_login::UserType userType, QString users
             studentWindow->setStudentId(usersId);
             studentWindow->show();
         } else {
-            studentWindow = new StudentWindow();
+            studentWindow = new StudentWindow(nullptr, usersId);
             studentWindow->show();
-            studentWindow->setStudentId(usersId);
         }
         teacherWindow = nullptr; // 关闭并释放教师窗口对象
     } else {

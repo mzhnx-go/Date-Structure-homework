@@ -172,6 +172,7 @@ bool FileHandler::loadOptionalCourse(const QString &fileName, QVector<OptionCour
     return true;
 }
 
+
 bool FileHandler::saveScoreFiles(const QVector<Score> &scores, const QString &fileName)
 {
     QString contents;

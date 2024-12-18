@@ -136,19 +136,33 @@ void show_optional_course::onSelectionChanged(const QItemSelection &selected, co
 
     // 获取当前选中的索引
     QModelIndexList selectedIndexes = ui->list_course->selectionModel()->selectedIndexes();
-    int count = selectedIndexes.size();
 
-    // 如果选择超过了4个，则移除最早的多余选择
-    while (count > 4) {
-        QModelIndex firstSelected = selectedIndexes.first();
-        ui->list_course->selectionModel()->select(firstSelected, QItemSelectionModel::Deselect);
-        selectedIndexes.removeFirst();
-        --count;
+    // 计算当前学生已经选择的课程数量加上本次新增的选择数量
+    int currentSelectedCoursesCount = currentStudent.getSelectedCoursesCount(); // 假设 Student 类有此方法
+    int newSelectionCount = selectedIndexes.size();
+    static bool limitReached = false; // 引入标志变量
+
+    // 如果总选择数量将超过4，则移除多余的选中项
+    while (currentSelectedCoursesCount + newSelectionCount > 4) {
+        if (!selectedIndexes.isEmpty()) {
+            QModelIndex firstSelected = selectedIndexes.first();
+            ui->list_course->selectionModel()->select(firstSelected, QItemSelectionModel::Deselect);
+            selectedIndexes.removeFirst();
+            --newSelectionCount;
+        }
     }
 
     // 更新保存的选中索引
     this->selectedIndexes.clear();
     for (const QModelIndex &index : selectedIndexes) {
         this->selectedIndexes.append(index.row());
+    }
+
+    // 检查是否达到了选择课程的数量限制，并且只提示一次
+    if (currentSelectedCoursesCount + newSelectionCount == 4 && !limitReached) {
+        QMessageBox::information(this, "提示", "您已经选择了4门课程，不能再选择了！");
+        limitReached = true;
+    } else if (currentSelectedCoursesCount + newSelectionCount < 4) {
+        limitReached = false; // 如果用户取消了一些选择，允许再次选择
     }
 }

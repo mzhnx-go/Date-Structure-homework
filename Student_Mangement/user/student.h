@@ -39,9 +39,9 @@ public:
     QString getCollege() const { return college; }
     QString getClassInfo() const { return classInfo; }
     QSet<QString> getCourses() const { return courses; }
-     bool operator==(const Student &other) const;
+    bool operator==(const Student &other) const;
     bool hasSelectedCourse(const Course &course); //判断有无选择这门课程
-
+    int getSelectedCoursesCount() const {return courses.count();}
 };
 
 #endif // STUDENT_H
