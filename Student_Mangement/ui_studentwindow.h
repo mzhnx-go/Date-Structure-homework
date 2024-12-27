@@ -43,15 +43,15 @@ public:
     QHBoxLayout *horizontalLayout_3;
     QPushButton *show_course;
     QSpacerItem *horizontalSpacer;
-    QPushButton *display;
+    QPushButton *cancel_course;
     QSpacerItem *horizontalSpacer_2;
     QSpacerItem *horizontalSpacer_3;
     QPushButton *searchStu;
     QSpacerItem *horizontalSpacer_5;
-    QLineEdit *inputCor;
+    QLineEdit *input_name;
     QSpacerItem *horizontalSpacer_6;
-    QPushButton *searchCor;
-    QTableWidget *tableWidget;
+    QPushButton *check_score;
+    QTableWidget *show_widget;
 
     void setupUi(QWidget *StudentWindow)
     {
@@ -125,16 +125,16 @@ public:
 
         horizontalLayout_3->addItem(horizontalSpacer);
 
-        display = new QPushButton(widget_7);
-        display->setObjectName("display");
-        display->setMinimumSize(QSize(80, 0));
-        display->setStyleSheet(QString::fromUtf8("padding-left: -0px\n"
+        cancel_course = new QPushButton(widget_7);
+        cancel_course->setObjectName("cancel_course");
+        cancel_course->setMinimumSize(QSize(80, 0));
+        cancel_course->setStyleSheet(QString::fromUtf8("padding-left: -0px\n"
 ""));
         QIcon icon1;
         icon1.addFile(QString::fromUtf8(":/\345\210\267\346\226\260.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
-        display->setIcon(icon1);
+        cancel_course->setIcon(icon1);
 
-        horizontalLayout_3->addWidget(display);
+        horizontalLayout_3->addWidget(cancel_course);
 
         horizontalSpacer_2 = new QSpacerItem(20, 20, QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Minimum);
 
@@ -159,29 +159,29 @@ public:
 
         horizontalLayout_3->addItem(horizontalSpacer_5);
 
-        inputCor = new QLineEdit(widget_7);
-        inputCor->setObjectName("inputCor");
-        inputCor->setMinimumSize(QSize(120, 0));
-        inputCor->setReadOnly(false);
+        input_name = new QLineEdit(widget_7);
+        input_name->setObjectName("input_name");
+        input_name->setMinimumSize(QSize(120, 0));
+        input_name->setReadOnly(false);
 
-        horizontalLayout_3->addWidget(inputCor);
+        horizontalLayout_3->addWidget(input_name);
 
         horizontalSpacer_6 = new QSpacerItem(20, 20, QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Minimum);
 
         horizontalLayout_3->addItem(horizontalSpacer_6);
 
-        searchCor = new QPushButton(widget_7);
-        searchCor->setObjectName("searchCor");
-        searchCor->setMinimumSize(QSize(100, 0));
-        searchCor->setStyleSheet(QString::fromUtf8(""));
-        searchCor->setIcon(icon2);
-        searchCor->setIconSize(QSize(40, 30));
+        check_score = new QPushButton(widget_7);
+        check_score->setObjectName("check_score");
+        check_score->setMinimumSize(QSize(100, 0));
+        check_score->setStyleSheet(QString::fromUtf8(""));
+        check_score->setIcon(icon2);
+        check_score->setIconSize(QSize(40, 30));
 
-        horizontalLayout_3->addWidget(searchCor);
+        horizontalLayout_3->addWidget(check_score);
 
-        tableWidget = new QTableWidget(widget_2);
-        tableWidget->setObjectName("tableWidget");
-        tableWidget->setGeometry(QRect(10, 150, 751, 311));
+        show_widget = new QTableWidget(widget_2);
+        show_widget->setObjectName("show_widget");
+        show_widget->setGeometry(QRect(10, 150, 751, 311));
 
         gridLayout_3->addWidget(widget, 0, 0, 1, 1);
 
@@ -198,10 +198,10 @@ public:
         exit->setText(QCoreApplication::translate("StudentWindow", "\351\200\200\345\207\272", nullptr));
         title->setText(QCoreApplication::translate("StudentWindow", "\345\255\246\347\224\237\346\210\220\347\273\251\347\256\241\347\220\206\347\263\273\347\273\237(\345\255\246\347\224\237\347\225\214\351\235\242)", nullptr));
         show_course->setText(QCoreApplication::translate("StudentWindow", "\346\230\276\347\244\272\345\217\257\351\200\211\350\257\276\347\250\213", nullptr));
-        display->setText(QCoreApplication::translate("StudentWindow", "\351\200\200\351\200\211\345\267\262\351\200\211\350\257\276\347\250\213", nullptr));
+        cancel_course->setText(QCoreApplication::translate("StudentWindow", "\351\200\200\351\200\211\345\267\262\351\200\211\350\257\276\347\250\213", nullptr));
         searchStu->setText(QCoreApplication::translate("StudentWindow", "\346\237\245\350\257\242\346\211\200\351\200\211\350\257\276\347\250\213", nullptr));
-        inputCor->setPlaceholderText(QCoreApplication::translate("StudentWindow", "\350\257\267\350\276\223\345\205\245\351\200\211\344\277\256\350\257\276\345\220\215\345\255\227", nullptr));
-        searchCor->setText(QCoreApplication::translate("StudentWindow", "\346\237\245\347\234\213\346\211\200\351\200\211\350\257\276\347\250\213\346\210\220\347\273\251", nullptr));
+        input_name->setPlaceholderText(QCoreApplication::translate("StudentWindow", "\350\257\267\350\276\223\345\205\245\351\200\211\344\277\256\350\257\276\345\220\215\345\255\227", nullptr));
+        check_score->setText(QCoreApplication::translate("StudentWindow", "\346\237\245\347\234\213\346\211\200\351\200\211\350\257\276\347\250\213\346\210\220\347\273\251", nullptr));
     } // retranslateUi
 
 };

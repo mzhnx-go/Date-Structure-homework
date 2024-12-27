@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    cancel_course.cpp \
     filehandler.cpp \
     global.cpp \
     main.cpp \
@@ -27,6 +28,7 @@ SOURCES += \
     utils.cpp
 
 HEADERS += \
+    cancel_course.h \
     filehandler.h \
     global.h \
     mainwindow.h \
@@ -44,6 +46,7 @@ HEADERS += \
     utils.h
 
 FORMS += \
+    cancel_course.ui \
     mainwindow.ui \
     page_login.ui \
     page_modify.ui \

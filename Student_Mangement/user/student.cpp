@@ -7,6 +7,11 @@ Student::Student(const QString &id, const QString &name, const QString &gender, 
 {
 }
 
+void Student::setCourse(QSet<QString> courses)
+{
+    this->courses = courses;
+}
+
 // 实现 operator==
 bool Student::operator==(const Student &other) const
 {
@@ -25,4 +30,11 @@ bool Student::hasSelectedCourse(const Course &course)
         return true;
     }
     return false;
+}
+
+void Student::removeCourse(QString CourseId)
+{
+    if (courses.contains(CourseId)) {
+        courses.remove(CourseId);
+    }
 }

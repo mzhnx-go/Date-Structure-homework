@@ -32,6 +32,7 @@ public:
     void setCollege(const QString &college) { this->college = college; }
     void setClassInfo(const QString &classInfo) { this->classInfo = classInfo; }
     void addCourse(const QString &course) { courses.insert(course); }
+    void setCourse(QSet<QString> courses);
     QString getId() const { return studentId; }
     QString getName() const { return name; }
     QString getGender() const { return gender; }
@@ -42,6 +43,7 @@ public:
     bool operator==(const Student &other) const;
     bool hasSelectedCourse(const Course &course); //判断有无选择这门课程
     int getSelectedCoursesCount() const {return courses.count();}
+    void removeCourse(QString CourseId);
 };
 
 #endif // STUDENT_H

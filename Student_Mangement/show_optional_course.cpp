@@ -52,6 +52,8 @@ void show_optional_course::loadCourses() {
                                                     .arg(optionCourse.getlastCourseNumber()));
         model->appendRow(item);
     }
+    qDebug() <<  "当前选择课程数:" << currentStudent.getSelectedCoursesCount();
+    qDebug() << "当前选择课程" << currentStudent.getCourses();
 }
 
 void show_optional_course::updateStudents()
@@ -71,6 +73,10 @@ void show_optional_course::updateStudents()
 
 bool show_optional_course::initDatas()
 {
+    courses.clear();
+    optionCourses.clear();
+    scores.clear();
+
     if (!FileHandler::loadCourses(coursesFilePath, courses)) {
         qWarning() << "ERROR IN show_optional_course::initDatas,loadCourses";
         return false;
@@ -99,14 +105,19 @@ bool show_optional_course::initDatas()
 
 
 
-/*TODO::测试课程满了的条件，能否成功写入文件
+/*
  * 修改 Utils::matchCourseAndOptionCourse(courses,optionCourses, mapCourses)
  * 如果课程数已经为零就不需要加入到map中
  * 1.将确定后的数据保存在currentStudent中
  * 2.修改Student表，修改score表,修改OptionCourse表
  */
+
+//TODO::修复score数据多写
 void show_optional_course::on_sure_choice_clicked()
 {
+
+    initDatas();
+
     // 获取当前选中的索引
     QModelIndexList selectedIndexes = ui->list_course->selectionModel()->selectedIndexes();
 
@@ -142,11 +153,10 @@ void show_optional_course::on_sure_choice_clicked()
 
 
         //加入新数据
-        //TODO::完成学生数据修改
-        Score newscore = Score(currentStudent.getId(), course.getCourseId());
-        scores.append(newscore);
-        updateStudents();
 
+
+        Score newscore = Score(currentStudent.getId(), course.getCourseId()); 
+        updateStudents();
         for (auto &oc : optionCourses) {
             if (oc.getCourseId() == courseId) {
                 oc.setLastCourseNumber(newLastCourseNumber);
@@ -182,13 +192,6 @@ void show_optional_course::on_sure_choice_clicked()
 
     if (!FileHandler::saveStudentFile(students, stuFilePath)) {
         qWarning() << "ERROR IN show_optional_course::on_sure_choice_clicked, saveStudentFile";
-    }
-
-
-    //TODO::调试完后删除下列语句
-    //Debug打印数据部分
-    for (const auto &score: scores) {
-        qDebug() << score.getStudentId() << " " << score.getCourseId() << " " << score.getUnitTestList();
     }
 
     // 关闭对话框
@@ -227,7 +230,7 @@ void show_optional_course::onSelectionChanged(const QItemSelection &selected, co
     if (currentSelectedCoursesCount + newSelectionCount > 4 && !limitReached) {
         QMessageBox::information(this, "提示", "您已经选择了4门课程，不能再选择了！");
         limitReached = true;
-    } else if (currentSelectedCoursesCount + newSelectionCount < 4) {
+    } else if (currentSelectedCoursesCount + newSelectionCount <= 4) {
         limitReached = false; // 如果用户取消了一些选择，允许再次选择
     }
 }

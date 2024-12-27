@@ -171,7 +171,7 @@ color: rgb(255, 255, 255);</string>
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="display">
+         <widget class="QPushButton" name="cancel_course">
           <property name="minimumSize">
            <size>
             <width>80</width>
@@ -266,7 +266,7 @@ color: rgb(255, 255, 255);</string>
          </spacer>
         </item>
         <item>
-         <widget class="QLineEdit" name="inputCor">
+         <widget class="QLineEdit" name="input_name">
           <property name="minimumSize">
            <size>
             <width>120</width>
@@ -298,7 +298,7 @@ color: rgb(255, 255, 255);</string>
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="searchCor">
+         <widget class="QPushButton" name="check_score">
           <property name="minimumSize">
            <size>
             <width>100</width>
@@ -325,7 +325,7 @@ color: rgb(255, 255, 255);</string>
         </item>
        </layout>
       </widget>
-      <widget class="QTableWidget" name="tableWidget">
+      <widget class="QTableWidget" name="show_widget">
        <property name="geometry">
         <rect>
          <x>10</x>

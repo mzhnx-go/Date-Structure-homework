@@ -46,6 +46,7 @@ private:
     QVector<Student> students;
     QVector<Course> courses;
     QVector<Score> scores;
+    bool m_loading = false;
     void init();
 };
 

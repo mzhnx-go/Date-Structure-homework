@@ -1,3 +1,4 @@
+release/cancel_course.o
 release/filehandler.o
 release/global.o
 release/main.o
@@ -15,6 +16,7 @@ release/tableattribute.o
 release/users.o
 release/utils.o
 release/qrc_resource.o
+release/moc_cancel_course.o
 release/moc_mainwindow.o
 release/moc_page_login.o
 release/moc_page_modify.o

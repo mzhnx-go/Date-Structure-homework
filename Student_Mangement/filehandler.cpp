@@ -40,39 +40,52 @@ bool FileHandler::loadUsers(const QString &fileName, QMap<QString, QString>&user
     return true;
 }
 
-
 bool FileHandler::loadStudent(const QString &fileName, QVector<Student> &students) {
+    students.clear();
     QString contents;
     if (!readFile(fileName, contents)) {
         qDebug() << "ERROR IN loadStudent : 无法读取学生文件";
+        return false; // 如果读取失败，应该返回 false 表示加载失败
     }
+
     QTextStream stream(&contents);
     while (!stream.atEnd()) {
         QString line = stream.readLine();
         if (line.isEmpty()) {
             continue;
         }
-        QStringList parts = line.split(" ");
-        if (parts.size() < 6) {
-            qWarning() << "'Error in loadStudent' 学生数据缺少基本信息";
+
+        QStringList parts = line.split(" ", Qt::SkipEmptyParts); // 使用 Qt::SkipEmptyParts 跳过空的部分
+
+        if (parts.size() < 5) {
+            qWarning() << "Error in loadStudent: 学生数据缺少基本信息" << line;
+            continue; // 如果缺少基本信息，跳过这一行
         }
+
         QString studentId = parts[0];
         QString name = parts[1];
         QString gender = parts[2];
         QString grade = parts[3];
         QString college = parts[4];
         QString classInfo = parts[5];
+
         QSet<QString> courses;
-        for (int i = 6; i < parts.size(); i ++) {
-            QString courseId = parts[i];
-            courses.insert(courseId);
+        for (int i = 6; i < parts.size(); ++i) {
+            QString courseId = parts[i].trimmed(); // 去除首尾空白字符
+            if (!courseId.isEmpty()) { // 确保课程ID不是空字符串
+                courses.insert(courseId);
+            }
         }
+
         Student student(studentId, name, gender, grade, college, classInfo, courses);
         students.append(student);
+
+        // 调试输出：打印加载的学生信息（可选）
+        qDebug() << "Loaded student:" << studentId << name << "with courses:" << courses;
     }
+
     return true;
 }
-
 
 bool FileHandler::loadScores(const QString &fileName, QVector<Score> &scores) {
     QFile file(fileName);

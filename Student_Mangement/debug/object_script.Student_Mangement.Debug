@@ -1,3 +1,4 @@
+debug/cancel_course.o
 debug/filehandler.o
 debug/global.o
 debug/main.o
@@ -15,6 +16,7 @@ debug/tableattribute.o
 debug/users.o
 debug/utils.o
 debug/qrc_resource.o
+debug/moc_cancel_course.o
 debug/moc_mainwindow.o
 debug/moc_page_login.o
 debug/moc_page_modify.o

@@ -25,7 +25,7 @@ class show_optional_course : public QDialog
     Q_OBJECT
 
 public:
-    explicit show_optional_course(QWidget *parent,Student &student);
+    explicit show_optional_course(QWidget *parent, Student &student);
     ~show_optional_course();
 
 private slots:

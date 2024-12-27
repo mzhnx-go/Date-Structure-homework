@@ -62,20 +62,31 @@ void page_modify::insertRowData(int row, const QString &courseName, const QStrin
     ui->modi_tab->setItem(row, 3, classItem);
 
     int col = 4;
-    for (const auto &grade : unitGrades) {
-        QTableWidgetItem *item = new QTableWidgetItem(QString::number(grade, 'f', 2)); // 转换为字符串，保留两位小数
+    for (int i = 0; i < 6; ++i) { // 假设最多有六次单元测验
+        QTableWidgetItem *item;
+        if (i < unitGrades.size() && unitGrades.at(i) >= 0.0 && unitGrades.at(i) <= 100.0) {
+            item = new QTableWidgetItem(QString::number(unitGrades.at(i), 'f', 2));
+        } else {
+            item = new QTableWidgetItem(editable ? "0.00" : "无");
+        }
         item->setFlags(editable ? item->flags() | Qt::ItemIsEditable : item->flags() & ~Qt::ItemIsEditable);
         ui->modi_tab->setItem(row, col++, item);
     }
 
-    QTableWidgetItem *finalGradeItem = new QTableWidgetItem(QString::number(finalGrade, 'f', 2)); // 同样处理期末成绩
+    // 处理期末成绩
+    QTableWidgetItem *finalGradeItem;
+    if (finalGrade >= 0.0 && finalGrade <= 100.0) {
+        finalGradeItem = new QTableWidgetItem(QString::number(finalGrade, 'f', 2));
+    } else {
+        finalGradeItem = new QTableWidgetItem(editable ? "0.00" : "无");
+    }
     finalGradeItem->setFlags(editable ? finalGradeItem->flags() | Qt::ItemIsEditable : finalGradeItem->flags() & ~Qt::ItemIsEditable);
     ui->modi_tab->setItem(row, col, finalGradeItem);
 }
 
 void page_modify::handleItemChanged(QTableWidgetItem *item)
 {
-    if (!item || item->column() < 4 || item->column() >= ui->modi_tab->columnCount()) return;
+    if (m_loading || !item || item->column() < 4 || item->column() >= ui->modi_tab->columnCount()) return;
 
     // 获取旧值（如果需要的话）
     QString oldText = item->data(Qt::EditRole).toString();
@@ -105,12 +116,14 @@ void page_modify::on_pushButton_3_clicked()
 
 void page_modify::on_show_button_clicked()
 {
+    m_loading = true;
     QString studentInfo = ui->stu_text->text().trimmed();
     QString courseInfo = ui->cou_text->text().trimmed();
     // 清除表格内容
     ui->modi_tab->clearContents();
     ui->modi_tab->setRowCount(0);
     init(); //重新加载数据
+
     if (!FileHandler::loadStudent(stuFilePath, students)) {
         qWarning() << "无法打开学生数据";
         QMessageBox::warning(this, "警告", "无法打开学生数据文件");
@@ -167,7 +180,7 @@ void page_modify::on_show_button_clicked()
     QStringList header;
     header << "类型" << "课程名" << "姓名" << "班级";
     const int maxUnitGrades = matchedScore.getUnitTestList().size();
-    for (int i = 1; i <= maxUnitGrades; ++i) {
+    for (int i = 1; i <= 6; ++i) { // 固定六次单元测验
         header << QString("第%1次成绩").arg(i);
     }
     header << "期末成绩";
@@ -197,16 +210,15 @@ void page_modify::on_show_button_clicked()
         }
     }
     ui->modi_tab->resizeColumnsToContents();
+
+    m_loading = false;
 }
 
 
-
-
-//从修改表格中读取数据并写入文件中
 void page_modify::on_sure_button_clicked()
 {
     if (ui->modi_tab->rowCount() < 2) {
-        QMessageBox::warning(this, tr("警告"),tr("没有足够的数据行"));
+        QMessageBox::warning(this, tr("警告"), tr("没有足够的数据行"));
         return;
     }
 
@@ -225,10 +237,12 @@ void page_modify::on_sure_button_clicked()
     Score *matchedScore = nullptr;
     bool findStudent = false;
     bool findCourse = false;
+
     for (const auto &student: students) {
         if (studentName == student.getName()) {
             matchedStudent = student;
             findStudent = true;
+            break;
         }
     }
 
@@ -236,6 +250,7 @@ void page_modify::on_sure_button_clicked()
         if (courseName == course.getCourseName()) {
             matchedCourse = course;
             findCourse = true;
+            break;
         }
     }
 
@@ -263,10 +278,15 @@ void page_modify::on_sure_button_clicked()
     for (int col = 4; col < ui->modi_tab->columnCount() - 1; ++col) { // 假设最后一列是期末成绩
         QTableWidgetItem *item = ui->modi_tab->item(1, col); // 取第二行（修改后的数据）
         if (item) {
+            QString text = item->text().trimmed();
+            if (text == "无") {
+                QMessageBox::warning(this, tr("警告"), tr("请输入有效的成绩"));
+                return;
+            }
             bool ok;
-            double value = item->text().toDouble(&ok);
+            double value = text.toDouble(&ok);
 
-            if (!ok || value < 0.0 || value > (100.0)) {
+            if (!ok || value < 0.0 || value > 100.0) {
                 QMessageBox::warning(this, tr("警告"), tr("请输入0到100之间的数字"));
                 return;
             }
@@ -281,10 +301,15 @@ void page_modify::on_sure_button_clicked()
     // 获取期末成绩
     QTableWidgetItem *finalGradeItem = ui->modi_tab->item(1, ui->modi_tab->columnCount() - 1);
     if (finalGradeItem) {
+        QString text = finalGradeItem->text().trimmed();
+        if (text == "无") {
+            QMessageBox::warning(this, tr("警告"), tr("请输入有效的期末成绩"));
+            return;
+        }
         bool ok;
-        finalGrade = finalGradeItem->text().toDouble(&ok);
+        finalGrade = text.toDouble(&ok);
 
-        if (!ok || finalGrade < 0.0 || finalGrade > (100.0)) {
+        if (!ok || finalGrade < 0.0 || finalGrade > 100.0) {
             QMessageBox::warning(this, tr("警告"), tr("请输入0到100之间的数字"));
             return;
         }
@@ -293,12 +318,16 @@ void page_modify::on_sure_button_clicked()
         return;
     }
 
+    // 更新 Score 对象的成绩
     matchedScore->setFinalExamScore(finalGrade);
     matchedScore->setUnitTestList(unitGrades);
+
+    // 保存更改
     if (!FileHandler::saveScoreFiles(scores, scoresFilePath)) {
         QMessageBox::warning(this, tr("警告"), tr("修改文件失败"));
         return;
     }
+
     QMessageBox::information(this, "提示", "修改成功");
     init();
     this->close();
